@@ -10,7 +10,7 @@ const promptFont = Prompt({
 });
 
 export const metadata: Metadata = {
-  title: "FOA Clothing | Freedom Over Anything | Streetwear Brand",
+  title: "FOA Clothing | The Lifestyle Brand",
   description:
     "Explore FOA Clothing (Freedom Over Anything), a premium lifestyle and urban streetwear brand. Shop the latest men's activewear, women's collections, minimal essentials, and accessories.",
   keywords: "FOA, FOA Clothing, Freedom Over Anything, Sri Lanka Streetwear, Urban Fashion, Activewear Colombo",

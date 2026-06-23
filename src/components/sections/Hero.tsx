@@ -6,29 +6,18 @@ import { Button } from "@/components/ui/button";
 
 const HERO_SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1600&auto=format&fit=crop",
-    subtitle: "STREETWEAR COLLECTIVE",
-    title: "FREEDOM OVER ANYTHING",
-    description: "Explore the new heavy-weight street dropped tees, cargos, and basic minimal drop.",
+    image: "https://foaclothing.com/cdn/shop/files/Untitled_design_1_5b73bf05-5465-4cbc-8706-35c6474443a1.png?v=1772531406&width=1920",
+    title: "Printed Tees Collection",
     link: "/#men",
-    cta: "Shop Streetwear",
+    cta: "Shop Now",
   },
   {
-    image: "https://images.unsplash.com/photo-1548624149-f7b2e65922b1?q=80&w=1600&auto=format&fit=crop",
-    subtitle: "ATHLETIC STRENGTH",
-    title: "ELEVATE YOUR TRAINING",
-    description: "Contoured activewear designed to withstand high-intensity workouts and daily motion.",
+    image: "https://foaclothing.com/cdn/shop/files/web_1_a3b9b7ef-a9c0-43fc-83a0-139d1dcf9a32.png?v=1769071508&width=1920",
+    title: "Womans Collection",
     link: "/#women",
-    cta: "Shop Activewear",
+    cta: "Shop Now",
   },
-  {
-    image: "https://images.unsplash.com/photo-1551854838-212c50b4c184?q=80&w=1600&auto=format&fit=crop",
-    subtitle: "MINIMALIST AESTHETIC",
-    title: "TIMELESS STAPLES",
-    description: "Premium French Terry essentials. Zero external logos. Absolute simplicity.",
-    link: "/#minimal",
-    cta: "Shop Minimal",
-  },
+
 ];
 
 export const Hero: React.FC = () => {
@@ -69,15 +58,9 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <span className="text-xs md:text-sm font-black tracking-[0.3em] uppercase text-accent">
-              {HERO_SLIDES[currentSlide].subtitle}
-            </span>
             <h1 className="text-4xl md:text-7xl font-extrabold uppercase tracking-tight leading-none">
               {HERO_SLIDES[currentSlide].title}
             </h1>
-            <p className="max-w-xl mx-auto text-sm md:text-base text-neutral-300 font-medium uppercase tracking-wider leading-relaxed">
-              {HERO_SLIDES[currentSlide].description}
-            </p>
             <div className="pt-4">
               <Button
                 variant="accent"
@@ -100,9 +83,8 @@ export const Hero: React.FC = () => {
           <button
             key={idx}
             onClick={() => setCurrentSlide(idx)}
-            className={`h-1.5 transition-all duration-300 rounded-none ${
-              currentSlide === idx ? "w-10 bg-accent" : "w-4 bg-white/40"
-            }`}
+            className={`h-1.5 transition-all duration-300 rounded-none ${currentSlide === idx ? "w-10 bg-accent" : "w-4 bg-white/40"
+              }`}
             aria-label={`Go to slide ${idx + 1}`}
           />
         ))}
