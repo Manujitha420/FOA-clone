@@ -11,58 +11,14 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 ;
 const LogoIcon = ({ className = "h-6 w-auto" })=>{
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-        viewBox: "0 0 100 24",
-        fill: "currentColor",
-        xmlns: "http://www.w3.org/2000/svg",
-        className: className,
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                d: "M 6 19  h 10  v -1.5  h -3.5  v -5.5  h 3.5  v -1.5  h -3.5  v -4.5  h 5.5  v 1.5  h 1.5  v -3  h -14  v 1.5  h 1.5  v 13  h -1.5  v 1.5  z"
-            }, void 0, false, {
-                fileName: "[project]/src/components/icons/LogoIcon.tsx",
-                lineNumber: 12,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                cx: "30",
-                cy: "11.5",
-                r: "2.2"
-            }, void 0, false, {
-                fileName: "[project]/src/components/icons/LogoIcon.tsx",
-                lineNumber: 36,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                cx: "50",
-                cy: "11.5",
-                r: "7.5",
-                fill: "none",
-                stroke: "currentColor",
-                strokeWidth: "2.5"
-            }, void 0, false, {
-                fileName: "[project]/src/components/icons/LogoIcon.tsx",
-                lineNumber: 39,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                cx: "70",
-                cy: "11.5",
-                r: "2.2"
-            }, void 0, false, {
-                fileName: "[project]/src/components/icons/LogoIcon.tsx",
-                lineNumber: 49,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                d: "M 76.5 19  h 4  L 87 4  L 93 19  h 4  v -1.5  h -1.5  L 87 5.5  L 78 17.5  h -1.5  v 1.5  z"
-            }, void 0, false, {
-                fileName: "[project]/src/components/icons/LogoIcon.tsx",
-                lineNumber: 52,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0))
-        ]
-    }, void 0, true, {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+        src: "/logo.png",
+        alt: "FOA",
+        className: `${className} object-contain`,
+        style: {
+            filter: "brightness(0) invert(1)"
+        }
+    }, void 0, false, {
         fileName: "[project]/src/components/icons/LogoIcon.tsx",
         lineNumber: 5,
         columnNumber: 5
