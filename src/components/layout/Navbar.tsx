@@ -60,7 +60,7 @@ const mensColumns = [
   },
   {
     title: "E-VOUCHER",
-    href: "/#evoucher",
+    href: "/evoucher",
     items: []
   },
   {
@@ -119,7 +119,7 @@ const womensColumns = [
   },
   {
     title: "E-VOUCHER",
-    href: "/#evoucher",
+    href: "/evoucher",
     items: []
   },
   {
@@ -143,7 +143,7 @@ const accessoriesColumns = [
   },
   {
     title: "E-VOUCHER",
-    href: "/#evoucher",
+    href: "/evoucher",
     items: []
   },
   {
@@ -166,7 +166,7 @@ const footwearColumns = [
   },
   {
     title: "E-VOUCHER",
-    href: "/#evoucher",
+    href: "/evoucher",
     items: []
   },
   {
@@ -197,7 +197,7 @@ export const Navbar: React.FC = () => {
     { name: "WOMENS", href: "/#women", hasDropdown: true },
     { name: "ACCESSORIES", href: "/#accessories", hasDropdown: true },
     { name: "FOOTWEAR", href: "/#footwear", hasDropdown: true },
-    { name: "E-VOUCHER", href: "/#evoucher", hasDropdown: false }
+    { name: "E-VOUCHER", href: "/evoucher", hasDropdown: false }
   ];
 
   const getDropdownColumns = (menuName: string) => {
