@@ -2,13 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { LogoIcon } from "@/components/icons/LogoIcon";
 import { CartIcon } from "@/components/icons/CartIcon";
 import { Menu, X, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { SearchDrawer } from "@/components/layout/SearchDrawer";
 
 export const Navbar: React.FC = () => {
+  const pathname = usePathname();
   const { cartItems, setCartOpen, currency } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -155,13 +158,23 @@ export const Navbar: React.FC = () => {
               LOG IN
             </Link>
             
-            <button
-              onClick={() => setIsSearchOpen(true)}
-              className="hover:opacity-75 transition-opacity"
-              aria-label="Search items"
-            >
-              <Search className="h-4.5 w-4.5 stroke-[2.5]" />
-            </button>
+            {pathname.startsWith("/account") ? (
+              <Link
+                href="/search"
+                className="hover:opacity-75 transition-opacity flex items-center"
+                aria-label="Search items"
+              >
+                <Search className="h-4.5 w-4.5 stroke-[2.5]" />
+              </Link>
+            ) : (
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="hover:opacity-75 transition-opacity flex items-center cursor-pointer"
+                aria-label="Search items"
+              >
+                <Search className="h-4.5 w-4.5 stroke-[2.5]" />
+              </button>
+            )}
 
             <button
               onClick={() => setCartOpen(true)}
@@ -179,42 +192,6 @@ export const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Floating Interactive Search Panel */}
-      <AnimatePresence>
-        {isSearchOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-0 top-0 z-50 bg-[#151515] border-b border-neutral-800 px-6 py-8 flex flex-col items-center"
-          >
-            <div className="w-full max-w-2xl flex items-center justify-between border-b border-neutral-700 py-3">
-              <input
-                type="text"
-                placeholder="SEARCH PRODUCTS..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent text-sm text-white placeholder-neutral-500 tracking-widest outline-none uppercase font-bold"
-                autoFocus
-              />
-              <button
-                onClick={() => {
-                  setIsSearchOpen(false);
-                  setSearchQuery("");
-                }}
-                className="text-neutral-400 hover:text-white p-1 ml-4"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-            {searchQuery && (
-              <p className="text-[10px] text-neutral-400 mt-4 tracking-widest uppercase font-semibold">
-                Press Enter to search for "{searchQuery}"
-              </p>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Mobile Drawer Slide-out Navigation */}
       <AnimatePresence>
@@ -282,6 +259,8 @@ export const Navbar: React.FC = () => {
           </>
         )}
       </AnimatePresence>
+
+      <SearchDrawer isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </>
   );
 };
