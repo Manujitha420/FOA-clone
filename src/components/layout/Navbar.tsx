@@ -151,7 +151,7 @@ export const Navbar: React.FC = () => {
 
           {/* Right: Actions */}
           <div className="col-span-8 md:col-span-5 flex items-center justify-end space-x-6 text-[11px] font-black tracking-[0.25em] text-white">
-            <Link href="/#login" className="hidden md:inline hover:opacity-75 transition-opacity">
+            <Link href="/account/login" className="hidden md:inline hover:opacity-75 transition-opacity">
               LOG IN
             </Link>
             
