@@ -184,7 +184,7 @@ export const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const isHeaderActive = isHovered || isScrolled || !!activeDropdown;
+  const isHeaderActive = pathname !== "/" || isHovered || isScrolled || !!activeDropdown;
 
   useEffect(() => {
     const handleScroll = () => {
