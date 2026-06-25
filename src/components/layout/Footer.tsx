@@ -7,11 +7,14 @@ import { LogoIcon } from "@/components/icons/LogoIcon";
 import { ArrowRight, ChevronUp, ChevronDown } from "lucide-react";
 
 export const Footer: React.FC = () => {
+  // Local states for newsletter email field, subscription success indicator, and currency switcher dropdown state
   const { currency, setCurrency } = useCart();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
+  const [footerEmailFocused, setFooterEmailFocused] = useState(false);
 
+  // Form submit handler that mimics a newsletter subscription and resets after a brief delay
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
@@ -21,10 +24,12 @@ export const Footer: React.FC = () => {
     }
   };
 
+  // Helper function to perform a smooth scroll of the viewport window back to the top
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Currencies list configuration with localization labels
   const currencies = [
     { code: "LKR", label: "LKR (රු)" },
     { code: "USD", label: "USD ($)" },
@@ -34,12 +39,35 @@ export const Footer: React.FC = () => {
     <footer className="bg-[#111111] text-white pt-16 pb-12 border-t border-neutral-850 relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16">
-          {/* Left Column: Logo & Socials */}
-          <div className="lg:col-span-5 space-y-8">
-            <LogoIcon className="h-6 w-auto text-white" />
-            
-            <div className="space-y-3">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400">
+          {/* Left Column: Logo & Socials (stretched with flex to align socials to the bottom) */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-12">
+            <div>
+              <LogoIcon className="h-10 w-auto text-white" />
+            </div>
+
+            <div 
+              style={{
+                color: "#fff",
+                fontSize: "15px",
+                fontWeight: 300,
+                lineHeight: "24px"
+              }}
+              className="space-y-3"
+            >
+              <h4 
+                style={{
+                  alignItems: "center",
+                  color: "#fff",
+                  display: "flex",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  justifyContent: "space-between",
+                  letterSpacing: "1.4px",
+                  lineHeight: "14px",
+                  margin: "0px 0px 20px",
+                  textTransform: "uppercase"
+                }}
+              >
                 Follow Us
               </h4>
               <div className="flex space-x-6 text-neutral-400">
@@ -74,27 +102,92 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Newsletter & Navigation Lists */}
+          {/* Right Column: Newsletter & Navigation Lists (naturally stacked and left-aligned) */}
           <div className="lg:col-span-7 space-y-12">
             {/* Newsletter form */}
-            <div className="space-y-4">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.25em]">
+            <div 
+              style={{
+                color: "#fff",
+                fontSize: "15px",
+                fontWeight: 300,
+                lineHeight: "24px",
+                padding: 0
+              }}
+              className="space-y-4"
+            >
+              <h4
+                style={{
+                  alignItems: "center",
+                  color: "#fff",
+                  display: "flex",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  justifyContent: "space-between",
+                  letterSpacing: "1.4px",
+                  lineHeight: "14px",
+                  margin: "0px 0px 20px",
+                  textTransform: "uppercase"
+                }}
+              >
                 Sign Up for the FOA Newsletter
               </h4>
-              <p className="text-xs text-neutral-400 font-semibold tracking-wider">
+              <p
+                style={{
+                  color: "#fff",
+                  fontFamily: "Prompt",
+                  fontSize: "15px",
+                  fontWeight: 300,
+                  lineHeight: "24px",
+                  margin: "0px 0px 20px"
+                }}
+              >
                 Be the first to know about our new collections and promotions
               </p>
-              <form onSubmit={handleSubscribe} className="max-w-md">
-                <div className="flex border-b border-neutral-700 py-2 relative">
+              <form onSubmit={handleSubscribe} className="w-full">
+                <div className="relative inline-block text-left w-full h-[48px]" style={{ boxSizing: "border-box" }}>
                   <input
                     type="email"
-                    placeholder="Email"
-                    value={email}
+                    value={email || ""}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-transparent text-xs uppercase tracking-wider outline-none placeholder-neutral-500 pr-8"
+                    onFocus={() => setFooterEmailFocused(true)}
+                    onBlur={() => setFooterEmailFocused(false)}
+                    style={{
+                      backgroundColor: "transparent",
+                      borderColor: footerEmailFocused ? "#0066cc" : "#dedede",
+                      borderStyle: "solid",
+                      borderWidth: "1px",
+                      color: "#fff",
+                      fontFamily: "Prompt, sans-serif",
+                      fontSize: "12px",
+                      lineHeight: "13.8px",
+                      padding: "12px 17px",
+                      width: "100%",
+                      height: "100%",
+                      boxSizing: "border-box",
+                      borderRadius: "0px",
+                      outline: "none"
+                    }}
                     required
                   />
-                  <button type="submit" className="absolute right-0 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white">
+                  <label
+                    style={{
+                      position: "absolute",
+                      left: "14px",
+                      top: (footerEmailFocused || email) ? "0" : "50%",
+                      transform: "translateY(-50%)",
+                      fontSize: (footerEmailFocused || email) ? "10px" : "12px",
+                      color: footerEmailFocused ? "#0066cc" : "#999999",
+                      backgroundColor: "#111111",
+                      padding: "0 6px",
+                      fontFamily: "Prompt, sans-serif",
+                      transition: "all 0.15s ease-out",
+                      pointerEvents: "none",
+                      lineHeight: "1"
+                    }}
+                  >
+                    Email
+                  </label>
+                  <button type="submit" className="absolute right-[17px] top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white">
                     <ArrowRight className="h-4 w-4" />
                   </button>
                 </div>
@@ -106,57 +199,196 @@ export const Footer: React.FC = () => {
               </form>
             </div>
 
-            {/* Links Columns & Payment logos */}
+            {/* Links Columns */}
             <div className="grid grid-cols-2 gap-8">
               {/* Support */}
               <div className="space-y-4">
-                <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-400">
+                <h4
+                  style={{
+                    alignItems: "center",
+                    color: "#fff",
+                    display: "flex",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    justifyContent: "space-between",
+                    letterSpacing: "1.4px",
+                    lineHeight: "14px",
+                    margin: "0px 0px 20px",
+                    textTransform: "uppercase"
+                  }}
+                >
                   Support
                 </h4>
-                <ul className="space-y-3 text-xs font-semibold uppercase tracking-widest text-neutral-200">
-                  <li><Link href="/#terms" className="hover:text-white transition-colors">Terms and Conditions</Link></li>
-                  <li><Link href="/#privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                  <li><Link href="/#exchanges" className="hover:text-white transition-colors">Return and Exchange Policy</Link></li>
-                  <li><Link href="/#shipping" className="hover:text-white transition-colors">Shipping Policy</Link></li>
+                <ul className="space-y-3" style={{ listStyleType: "none", padding: 0 }}>
+                  <li>
+                    <Link
+                      href="/#terms"
+                      style={{
+                        color: "#fff",
+                        fontSize: "15px",
+                        fontWeight: 300,
+                        lineHeight: "24px",
+                        fontFamily: "Prompt, sans-serif"
+                      }}
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      Terms and Conditions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/#privacy"
+                      style={{
+                        color: "#fff",
+                        fontSize: "15px",
+                        fontWeight: 300,
+                        lineHeight: "24px",
+                        fontFamily: "Prompt, sans-serif"
+                      }}
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/#exchanges"
+                      style={{
+                        color: "#fff",
+                        fontSize: "15px",
+                        fontWeight: 300,
+                        lineHeight: "24px",
+                        fontFamily: "Prompt, sans-serif"
+                      }}
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      Return and Exchange Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/#shipping"
+                      style={{
+                        color: "#fff",
+                        fontSize: "15px",
+                        fontWeight: 300,
+                        lineHeight: "24px",
+                        fontFamily: "Prompt, sans-serif"
+                      }}
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      Shipping Policy
+                    </Link>
+                  </li>
                 </ul>
               </div>
 
               {/* Info */}
               <div className="space-y-4">
-                <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-400">
+                <h4
+                  style={{
+                    alignItems: "center",
+                    color: "#fff",
+                    display: "flex",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    justifyContent: "space-between",
+                    letterSpacing: "1.4px",
+                    lineHeight: "14px",
+                    margin: "0px 0px 20px",
+                    textTransform: "uppercase"
+                  }}
+                >
                   Info
                 </h4>
-                <ul className="space-y-3 text-xs font-semibold uppercase tracking-widest text-neutral-200">
-                  <li><Link href="/#story" className="hover:text-white transition-colors">Our Story</Link></li>
-                  <li><Link href="/#contact" className="hover:text-white transition-colors">Contact Us</Link></li>
-                  <li><Link href="/#careers" className="hover:text-white transition-colors">Careers</Link></li>
-                  <li><Link href="/#training" className="hover:text-white transition-colors">Training Dept</Link></li>
-                  <li><Link href="/#strongest" className="hover:text-white transition-colors">Strongest in the City</Link></li>
+                <ul className="space-y-3" style={{ listStyleType: "none", padding: 0 }}>
+                  <li>
+                    <Link
+                      href="/#story"
+                      style={{
+                        color: "#fff",
+                        fontSize: "15px",
+                        fontWeight: 300,
+                        lineHeight: "24px",
+                        fontFamily: "Prompt, sans-serif"
+                      }}
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      Our Story
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/#contact"
+                      style={{
+                        color: "#fff",
+                        fontSize: "15px",
+                        fontWeight: 300,
+                        lineHeight: "24px",
+                        fontFamily: "Prompt, sans-serif"
+                      }}
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      Contact Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/#careers"
+                      style={{
+                        color: "#fff",
+                        fontSize: "15px",
+                        fontWeight: 300,
+                        lineHeight: "24px",
+                        fontFamily: "Prompt, sans-serif"
+                      }}
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      Careers
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/#training"
+                      style={{
+                        color: "#fff",
+                        fontSize: "15px",
+                        fontWeight: 300,
+                        lineHeight: "24px",
+                        fontFamily: "Prompt, sans-serif"
+                      }}
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      Training Dept
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/#strongest"
+                      style={{
+                        color: "#fff",
+                        fontSize: "15px",
+                        fontWeight: 300,
+                        lineHeight: "24px",
+                        fontFamily: "Prompt, sans-serif"
+                      }}
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      Strongest in the City
+                    </Link>
+                  </li>
                 </ul>
               </div>
-            </div>
-
-            {/* Payment badge images row */}
-            <div className="pt-4 flex flex-wrap gap-2 items-center justify-start lg:justify-end">
-              {/* Render dynamic payment badges as clean inline images matching payment logos */}
-              {["Amex", "ApplePay", "Diners", "Discover", "GPay", "JCB", "Mastercard", "UnionPay", "Visa"].map((badge) => (
-                <span
-                  key={badge}
-                  className="bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-1 text-[9px] font-black uppercase tracking-wider rounded-sm select-none"
-                >
-                  {badge}
-                </span>
-              ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom copyright & actions row */}
-        <div className="pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
-          {/* Bottom Left: Copyright + Currency Selector */}
-          <div className="space-y-4 flex flex-col items-start w-full md:w-auto">
-            <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">
-              &copy; {new Date().getFullYear()} FOA Clothing, All rights reserved. Powered by Shopify
+        {/* Bottom copyright, currency switcher & payment badges row */}
+        <div className="pt-8 border-t border-neutral-800 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* Bottom Left Column (under logo): Copyright & Currency Switcher */}
+          <div className="lg:col-span-5 flex flex-col items-start gap-6">
+            <p className="text-[10px] font-bold text-[#7a7a7a] uppercase tracking-widest">
+              &copy; {new Date().getFullYear()} FOA Clothing, All rights reserved. <Link href="https://shopify.com" target="_blank" className="hover:underline">Powered by Shopify</Link>
             </p>
             
             {/* Currency switcher dropdown */}
@@ -188,11 +420,24 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Bottom Right: Scroll to top arrow */}
-          <div className="flex items-center justify-end w-full md:w-auto">
+          {/* Bottom Right Column (under links): Payment Logos & Scroll back to top */}
+          <div className="lg:col-span-7 flex flex-col md:flex-row justify-between items-center md:items-start gap-6 w-full">
+            {/* Payment badge images row */}
+            <div className="flex flex-wrap gap-2 items-center justify-start md:justify-end md:ml-auto">
+              {["Amex", "ApplePay", "Diners", "Discover", "GPay", "JCB", "Mastercard", "UnionPay", "Visa"].map((badge) => (
+                <span
+                  key={badge}
+                  className="bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-1 text-[9px] font-black uppercase tracking-wider rounded-sm select-none"
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
+
+            {/* Scroll back to top button */}
             <button
               onClick={scrollToTop}
-              className="h-10 w-10 bg-white hover:bg-neutral-200 text-black flex items-center justify-center rounded-full shadow-lg transition-colors focus:outline-none"
+              className="h-10 w-10 bg-white hover:bg-neutral-200 text-black flex items-center justify-center rounded-full shadow-lg transition-colors focus:outline-none shrink-0"
               aria-label="Scroll back to top of page"
             >
               <ChevronUp className="h-5 w-5 stroke-[2.5]" />
