@@ -180,9 +180,11 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const { cartItems, setCartOpen, currency } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const isHeaderActive = isHovered || isScrolled || !!activeDropdown;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -316,19 +318,34 @@ export const Navbar: React.FC = () => {
       </div>
 
       <header
-        className={`fixed left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? "bg-[#151515]/95 backdrop-blur-md border-b border-neutral-900 py-3 shadow-md"
-            : "bg-gradient-to-b from-[#111111]/80 to-transparent py-5"
-        }`}
-        style={{ top: "45px" }}
-        onMouseLeave={() => setActiveDropdown(null)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          setActiveDropdown(null);
+        }}
+        className="fixed left-0 right-0 z-40 transition-all duration-300"
+        style={{
+          top: "45px",
+          backgroundColor: "transparent",
+          paddingTop: "40px",
+          paddingBottom: "20px",
+        }}
       >
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 items-center">
+        {/* Animated Background Overlay (scales from top to bottom) */}
+        <div 
+          className="absolute top-0 left-0 right-0 bg-white transition-all duration-300 ease-out origin-top -z-10"
+          style={{
+            height: "100%",
+            transform: isHeaderActive ? "scaleY(1)" : "scaleY(0.26)",
+            borderBottom: isHeaderActive ? "1px solid #e5e7eb" : "1px solid transparent"
+          }}
+        />
+
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 items-center relative z-10">
           
           {/* Left: Nav Menu in 2 rows */}
           <div className="col-span-5 hidden md:flex flex-col space-y-1">
-            <nav className="flex items-center space-x-6 text-[11px] font-black tracking-[0.2em] text-white">
+            <nav className={`flex items-center space-x-6 text-[11px] font-black tracking-[0.2em] transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`}>
               {navItems.map((item) => (
                 <div
                   key={item.name}
@@ -360,7 +377,7 @@ export const Navbar: React.FC = () => {
           {/* Left (Mobile Toggle) */}
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="md:hidden col-span-4 justify-self-start text-white p-1 hover:opacity-75"
+            className={`md:hidden col-span-4 justify-self-start p-1 hover:opacity-75 transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`}
           >
             <Menu className="h-6 w-6" />
           </button>
@@ -370,14 +387,14 @@ export const Navbar: React.FC = () => {
             className="col-span-4 md:col-span-2 flex justify-center"
             onMouseEnter={() => setActiveDropdown(null)}
           >
-            <Link href="/" className="text-white hover:opacity-90 transition-opacity">
-              <LogoIcon className="h-[22px] w-auto" />
+            <Link href="/" className="hover:opacity-90 transition-opacity">
+              <LogoIcon className="h-[22px] w-auto" invert={!isHeaderActive} />
             </Link>
           </div>
 
           {/* Right: Actions */}
           <div 
-            className="col-span-8 md:col-span-5 flex items-center justify-end space-x-6 text-[11px] font-black tracking-[0.25em] text-white"
+            className={`col-span-8 md:col-span-5 flex items-center justify-end space-x-6 text-[11px] font-black tracking-[0.25em] transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`}
             onMouseEnter={() => setActiveDropdown(null)}
           >
             <Link href="/account/login" className="hidden md:inline hover:opacity-75 transition-opacity">
@@ -407,9 +424,9 @@ export const Navbar: React.FC = () => {
               className="relative p-1 hover:opacity-75 transition-opacity"
               aria-label="Shopping Cart"
             >
-              <CartIcon className="h-5 w-5 text-white" />
+              <CartIcon className={`h-5 w-5 transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`} />
               {totalItems > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-white text-black text-[9px] font-black rounded-full h-4 w-4 flex items-center justify-center">
+                <span className={`absolute -top-1.5 -right-1.5 text-[9px] font-black rounded-full h-4 w-4 flex items-center justify-center transition-colors duration-300 ${isHeaderActive ? "bg-black text-white" : "bg-white text-black"}`}>
                   {totalItems}
                 </span>
               )}
