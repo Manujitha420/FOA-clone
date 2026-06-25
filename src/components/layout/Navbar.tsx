@@ -222,7 +222,7 @@ export const Navbar: React.FC = () => {
   return (
     <>
       {/* Announcement Bar */}
-      <div 
+      <div
         className="fixed top-0 left-0 right-0 z-50 overflow-hidden select-none flex whitespace-nowrap marquee-container"
         style={{
           backgroundColor: "#151515",
@@ -233,7 +233,8 @@ export const Navbar: React.FC = () => {
           padding: "14px 0px"
         }}
       >
-        <style dangerouslySetInnerHTML={{__html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-100%); }
@@ -327,25 +328,50 @@ export const Navbar: React.FC = () => {
         style={{
           top: "45px",
           backgroundColor: "transparent",
-          paddingTop: "40px",
-          paddingBottom: "20px",
+          paddingTop: "0px",
+          paddingBottom: "0px",
         }}
       >
         {/* Animated Background Overlay (scales from top to bottom) */}
-        <div 
+        <div
           className="absolute top-0 left-0 right-0 bg-white transition-all duration-300 ease-out origin-top -z-10"
           style={{
             height: "100%",
-            transform: isHeaderActive ? "scaleY(1)" : "scaleY(0.26)",
+            transform: isHeaderActive ? "scaleY(1)" : "scaleY(0.22)",
             borderBottom: isHeaderActive ? "1px solid #e5e7eb" : "1px solid transparent"
           }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 items-center relative z-10">
-          
+        <div
+          className="relative z-10 mx-auto"
+          style={{
+            alignItems: "center",
+            color: isHeaderActive ? "#151515" : "#ffffff",
+            display: "grid",
+            flexBasis: "100%",
+            fontSize: "17px",
+            fontWeight: 500,
+            gridTemplateColumns: "612.742px 114.516px 612.742px",
+            gridTemplateRows: "88px",
+            lineHeight: "27.2px",
+            padding: "0px 15px",
+            paddingTop: "20px",
+            width: "max-content",
+            maxWidth: "100%"
+          }}
+        >
+
           {/* Left: Nav Menu in 2 rows */}
-          <div className="col-span-5 hidden md:flex flex-col space-y-1">
-            <nav className={`flex items-center space-x-6 text-[11px] font-black tracking-[0.2em] transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`}>
+          <div className="hidden md:flex flex-col justify-self-start space-y-1">
+            <nav
+              className={`flex items-center space-x-6 transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`}
+              style={{
+                fontSize: "15px",
+                fontWeight: 300,
+                lineHeight: "24px",
+                textAlign: "left"
+              }}
+            >
               {navItems.map((item) => (
                 <div
                   key={item.name}
@@ -377,30 +403,40 @@ export const Navbar: React.FC = () => {
           {/* Left (Mobile Toggle) */}
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className={`md:hidden col-span-4 justify-self-start p-1 hover:opacity-75 transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`}
+            className={`md:hidden justify-self-start p-1 hover:opacity-75 transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`}
           >
             <Menu className="h-6 w-6" />
           </button>
 
           {/* Center: Typographic Logo */}
-          <div 
-            className="col-span-4 md:col-span-2 flex justify-center"
+          <div
+            className="flex justify-self-center"
             onMouseEnter={() => setActiveDropdown(null)}
           >
-            <Link href="/" className="hover:opacity-90 transition-opacity">
+            <Link
+              href="/"
+              className="hover:opacity-90 transition-opacity"
+              style={{
+                color: isHeaderActive ? "#151515" : "#ffffff",
+                fontSize: "17px",
+                fontWeight: 300,
+                lineHeight: "27.2px",
+                textAlign: "center"
+              }}
+            >
               <LogoIcon className="h-[22px] w-auto" invert={!isHeaderActive} />
             </Link>
           </div>
 
           {/* Right: Actions */}
-          <div 
-            className={`col-span-8 md:col-span-5 flex items-center justify-end space-x-6 text-[11px] font-black tracking-[0.25em] transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`}
+          <div
+            className={`flex items-center justify-self-end space-x-6 text-[11px] font-black tracking-[0.25em] transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`}
             onMouseEnter={() => setActiveDropdown(null)}
           >
             <Link href="/account/login" className="hidden md:inline hover:opacity-75 transition-opacity">
               LOG IN
             </Link>
-            
+
             {pathname.startsWith("/account") ? (
               <Link
                 href="/search"
