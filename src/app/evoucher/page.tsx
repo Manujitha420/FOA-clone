@@ -87,6 +87,7 @@ export default function EVoucherPage() {
       <Navbar />
       <CartDrawer />
 
+      {/* Content Container */}
       <main className="flex-1 pt-36 pb-20">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-6 mb-8">
@@ -97,15 +98,15 @@ export default function EVoucherPage() {
           </nav>
         </div>
 
-        {/* Main Content */}
+        {/* Purchase Workspace */}
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 
-          {/* Left: Gift Card Image */}
+          {/* Left Column: Image */}
           <div className="lg:col-span-7">
             <div className="relative w-full max-w-[580px] mx-auto">
-              {/* Black card area */}
+              {/* Card Face */}
               <div className="bg-black flex flex-col items-center justify-center py-20 px-12">
-                {/* FOA Logo text */}
+                {/* Logo */}
                 <div className="flex items-center space-x-4 mb-10">
                   <span className="text-white text-5xl font-black tracking-[-0.02em]">F</span>
                   <span className="text-white text-3xl font-light">·</span>
@@ -115,7 +116,7 @@ export default function EVoucherPage() {
                 </div>
                 <p className="text-white text-xl font-light tracking-[0.3em] uppercase">E - GIFT CARD</p>
               </div>
-              {/* Bottom strip */}
+              {/* Card Footer */}
               <div className="bg-neutral-200 py-4 text-center">
                 <p className="text-[13px] font-medium text-neutral-600 tracking-wide">
                   Valid for use on the FOACLOTHING.COM website only
@@ -124,7 +125,7 @@ export default function EVoucherPage() {
             </div>
           </div>
 
-          {/* Right: Purchase Block */}
+          {/* Right Column: Pricing & Options */}
           <div className="lg:col-span-5 flex flex-col space-y-6">
             {/* Title */}
             <h1 className="text-2xl font-black uppercase tracking-[0.15em] text-[#111]">
@@ -156,46 +157,37 @@ export default function EVoucherPage() {
               )}
             </div>
 
-            {/* Denominations */}
+            {/* Denomination Selector */}
             <div className="space-y-3">
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-500">
-                Denominations
-              </p>
+              <label className="block text-[11px] font-bold tracking-widest text-[#111] uppercase">
+                Denomination
+              </label>
               <div className="flex flex-wrap gap-2">
-                {denominations.map((denom, idx) => (
+                {denominations.map((val, idx) => (
                   <button
                     key={idx}
                     onClick={() => setSelectedIdx(idx)}
-                    className={`px-3 py-1.5 text-[11px] font-bold tracking-wide border transition-all duration-150 ${
+                    className={`px-4 py-2 border text-xs tracking-wider uppercase transition-colors font-medium ${
                       selectedIdx === idx
-                        ? "bg-[#111] text-white border-[#111]"
-                        : "bg-white text-[#111] border-neutral-300 hover:border-[#111]"
+                        ? "border-[#111] bg-[#111] text-white"
+                        : "border-neutral-200 text-neutral-600 hover:border-[#111] hover:text-black"
                     }`}
                   >
-                    {formatPrice(denom)}
+                    {formatPrice(val)}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Divider */}
-            <hr className="border-neutral-200" />
-
-            {/* Size Chart link */}
-            <button className="flex items-center space-x-2 text-[11px] font-black uppercase tracking-[0.2em] text-[#111] hover:opacity-70 transition-opacity w-fit">
-              <Ruler className="h-3.5 w-3.5" />
-              <span>Size Chart</span>
-            </button>
-
-            {/* Description Accordion */}
-            <div className="border border-[#2563eb] rounded-sm">
+            {/* Accordion Block */}
+            <div className="border-t border-b border-neutral-200">
               <button
-                onClick={() => setDescriptionOpen((v) => !v)}
-                className="w-full flex items-center justify-between px-4 py-3.5 text-[13px] font-bold text-[#111] text-left"
+                onClick={() => setDescriptionOpen(!descriptionOpen)}
+                className="w-full py-4 flex items-center justify-between text-[11px] font-black tracking-widest text-[#111] uppercase hover:opacity-70 transition-opacity"
               >
                 <span>Description</span>
                 {descriptionOpen ? (
-                  <span className="text-xl font-light leading-none">—</span>
+                  <span className="text-base font-light">−</span>
                 ) : (
                   <Plus className="h-4 w-4 flex-shrink-0" />
                 )}
@@ -213,7 +205,7 @@ export default function EVoucherPage() {
               )}
             </div>
 
-            {/* Send as gift checkbox + form */}
+            {/* Gift Options */}
             <div className="space-y-4">
               <label className="flex items-center space-x-2 cursor-pointer w-fit group">
                 <input
@@ -272,9 +264,9 @@ export default function EVoucherPage() {
               )}
             </div>
 
-            {/* Quantity + Add to Cart */}
+            {/* Quantity & Cart Controls */}
             <div className="flex items-center gap-3">
-              {/* Quantity */}
+              {/* Quantity Selector */}
               <div className="flex items-center border border-neutral-300 h-11">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -293,18 +285,18 @@ export default function EVoucherPage() {
                 </button>
               </div>
 
-              {/* Add to Cart */}
+              {/* Add To Cart */}
               <button className="flex-1 h-11 bg-white text-[#111] text-[11px] font-black tracking-[0.2em] uppercase border border-[#111] hover:bg-[#111] hover:text-white transition-all duration-200 rounded-full">
                 Add to Cart
               </button>
             </div>
 
-            {/* Add to Wishlist */}
+            {/* Wishlist Button */}
             <button className="w-full h-11 bg-white text-[#111] text-[11px] font-black tracking-[0.2em] uppercase border border-[#111] hover:bg-[#111] hover:text-white transition-all duration-200 rounded-full">
               Add to Wishlist
             </button>
 
-            {/* Free Shipping */}
+            {/* Shipping Tag */}
             <div className="flex items-center space-x-3 py-3 border-t border-neutral-100">
               <div className="text-[11px] text-neutral-500 font-semibold flex items-center space-x-2">
                 <span>🚚</span>

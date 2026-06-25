@@ -15,14 +15,17 @@ export default function AccountPage({ params }: AccountPageProps) {
   const { mode } = use(params);
   const isLogin = mode === "login";
 
+  // Page Container: Background color, text color, min height, and top padding to clear header
   return (
     <div className="min-h-screen bg-white text-[#111111] flex flex-col justify-between pt-32">
       <Navbar />
       <CartDrawer />
 
+      {/* Content Container */}
       <main className="flex-1 flex items-center justify-center py-16 px-6">
         <div className="w-full max-w-[500px] mx-auto text-center">
           {isLogin ? (
+            /* LOGIN VIEW */
             <motion.div
               key="login"
               initial={{ opacity: 0, y: 10 }}
@@ -31,15 +34,30 @@ export default function AccountPage({ params }: AccountPageProps) {
               className="space-y-8"
             >
               <div className="space-y-3">
-                <h1 className="text-2xl font-normal tracking-[0.15em] uppercase font-sans">
+                {/* Title */}
+                <h1
+                  style={{
+                    color: "#151515",
+                    fontFamily: "Prompt, sans-serif",
+                    fontSize: "28px",
+                    lineHeight: "36px",
+                    margin: "0px 0px 10px",
+                    textAlign: "center",
+                    textTransform: "uppercase"
+                  }}
+                  className="font-normal tracking-[0.15em]"
+                >
                   Log In
                 </h1>
+                {/* Description */}
                 <p className="text-[12px] text-neutral-500 font-sans tracking-wide">
                   If you have an account with us, please log in.
                 </p>
               </div>
 
+              {/* Login Form */}
               <form className="space-y-4 text-left">
+                {/* Email Input */}
                 <div>
                   <input
                     type="email"
@@ -48,6 +66,7 @@ export default function AccountPage({ params }: AccountPageProps) {
                     required
                   />
                 </div>
+                {/* Password Input */}
                 <div>
                   <input
                     type="password"
@@ -57,6 +76,7 @@ export default function AccountPage({ params }: AccountPageProps) {
                   />
                 </div>
 
+                {/* Submit Button */}
                 <div className="pt-2">
                   <button
                     type="submit"
@@ -67,6 +87,7 @@ export default function AccountPage({ params }: AccountPageProps) {
                 </div>
               </form>
 
+              {/* Links */}
               <div className="space-y-3 pt-2 text-[12px] font-sans tracking-wide">
                 <div>
                   <span className="text-neutral-500">Don't have an account? </span>
@@ -88,6 +109,7 @@ export default function AccountPage({ params }: AccountPageProps) {
               </div>
             </motion.div>
           ) : (
+            /* REGISTER VIEW */
             <motion.div
               key="register"
               initial={{ opacity: 0, y: 10 }}
@@ -96,15 +118,30 @@ export default function AccountPage({ params }: AccountPageProps) {
               className="space-y-8"
             >
               <div className="space-y-3">
-                <h1 className="text-2xl font-normal tracking-[0.15em] uppercase font-sans">
+                {/* Title */}
+                <h1
+                  style={{
+                    color: "#151515",
+                    fontFamily: "Prompt, sans-serif",
+                    fontSize: "28px",
+                    lineHeight: "36px",
+                    margin: "0px 0px 10px",
+                    textAlign: "center",
+                    textTransform: "uppercase"
+                  }}
+                  className="font-normal tracking-[0.15em]"
+                >
                   Create An Account
                 </h1>
+                {/* Description */}
                 <p className="text-[12px] text-neutral-500 font-sans tracking-wide max-w-[420px] mx-auto leading-relaxed">
                   Enter your information below to proceed. If you already have an account, please log in instead.
                 </p>
               </div>
 
+              {/* Register Form */}
               <form className="space-y-4 text-left">
+                {/* Name Inputs */}
                 <div className="grid grid-cols-2 gap-4">
                   <input
                     type="text"
@@ -119,6 +156,7 @@ export default function AccountPage({ params }: AccountPageProps) {
                     required
                   />
                 </div>
+                {/* Email Input */}
                 <div>
                   <input
                     type="email"
@@ -127,6 +165,7 @@ export default function AccountPage({ params }: AccountPageProps) {
                     required
                   />
                 </div>
+                {/* Password Input */}
                 <div>
                   <input
                     type="password"
@@ -136,6 +175,7 @@ export default function AccountPage({ params }: AccountPageProps) {
                   />
                 </div>
 
+                {/* Submit Button */}
                 <div className="pt-2">
                   <button
                     type="submit"
@@ -146,6 +186,7 @@ export default function AccountPage({ params }: AccountPageProps) {
                 </div>
               </form>
 
+              {/* Redirect Link */}
               <div className="pt-2 text-[12px] font-sans tracking-wide">
                 <span className="text-neutral-500">Already have an account? </span>
                 <Link

@@ -18,10 +18,10 @@ export default function SearchPage() {
 
   const filteredProducts = query
     ? products.filter(
-        (p) =>
-          p.title.toLowerCase().includes(query.toLowerCase()) ||
-          p.description.toLowerCase().includes(query.toLowerCase())
-      )
+      (p) =>
+        p.title.toLowerCase().includes(query.toLowerCase()) ||
+        p.description.toLowerCase().includes(query.toLowerCase())
+    )
     : [];
 
   const formattedPrice = (price: number) => {
@@ -41,6 +41,7 @@ export default function SearchPage() {
       <Navbar />
       <CartDrawer />
 
+      {/* Content Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-6 py-12">
         {/* Breadcrumb */}
         <div className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 mb-12">
@@ -50,13 +51,13 @@ export default function SearchPage() {
           <span className="mx-2">/</span> Search
         </div>
 
-        {/* Header Title */}
+        {/* Heading */}
         <div className="text-center space-y-8 mb-16">
           <h1 className="text-3xl md:text-5xl font-black uppercase tracking-wider text-[#111111]">
             Search Results
           </h1>
 
-          {/* Centered Search Bar */}
+          {/* Search Input */}
           <div className="max-w-2xl mx-auto relative">
             <input
               type="text"
@@ -73,6 +74,7 @@ export default function SearchPage() {
         {/* Results Area */}
         {query && (
           <div className="space-y-8">
+            {/* Results Count */}
             <div className="border-b border-neutral-100 pb-4">
               <p className="text-xs font-black uppercase tracking-widest text-neutral-500">
                 {filteredProducts.length} {filteredProducts.length === 1 ? "Result" : "Results"} found for "{query}"
@@ -88,7 +90,7 @@ export default function SearchPage() {
                     onMouseEnter={() => setHoveredCard(product.id)}
                     onMouseLeave={() => setHoveredCard(null)}
                   >
-                    {/* Image Box */}
+                    {/* Image Area */}
                     <div className="relative aspect-[3/4] w-full bg-neutral-50 overflow-hidden mb-4">
                       <Link href={`/products/${product.id}`}>
                         {/* Primary Image */}
@@ -102,7 +104,7 @@ export default function SearchPage() {
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                         />
 
-                        {/* Secondary Hover Image */}
+                        {/* Hover Image */}
                         {product.images[1] && (
                           <Image
                             src={product.images[1]}
@@ -116,7 +118,7 @@ export default function SearchPage() {
                         )}
                       </Link>
 
-                      {/* Action Buttons overlay */}
+                      {/* Action Buttons */}
                       <div className="absolute bottom-4 left-4 right-4 flex space-x-2 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                         <button
                           className="flex-1 py-2 bg-[#111111] hover:bg-neutral-800 text-white text-[10px] font-black uppercase tracking-wider rounded-none flex items-center justify-center gap-1.5"
@@ -171,7 +173,7 @@ export default function SearchPage() {
                         )}
                       </div>
 
-                      {/* Koko Installments badge */}
+                      {/* Koko Installments */}
                       {currency === "LKR" && (
                         <div className="mt-3 text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-1 border border-emerald-100 w-fit">
                           3 payments of {getKokoSplits(product.priceLKR)} with Koko
@@ -183,6 +185,7 @@ export default function SearchPage() {
               </div>
             ) : (
               <div className="text-center py-20 text-neutral-400 text-sm font-semibold tracking-wider uppercase">
+                {/* No Results */}
                 No matching collections or products found.
               </div>
             )}

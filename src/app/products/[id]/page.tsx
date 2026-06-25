@@ -115,7 +115,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               ))}
             </div>
 
-            {/* Main Stage Image */}
+            {/* Main Image */}
             <div className="flex-1 order-1 md:order-2 relative aspect-[3/4] bg-neutral-50 dark:bg-neutral-900 overflow-hidden">
               <motion.div
                 key={selectedImageIdx}
@@ -136,7 +136,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
             </div>
           </div>
 
-          {/* Right Column: Dynamic Form Purchase Block */}
+          {/* Details & Form */}
           <div className="lg:col-span-5 flex flex-col space-y-8">
             <div className="space-y-4">
               <span className="text-xs font-black tracking-widest text-accent uppercase">
@@ -146,7 +146,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                 {product.title}
               </h1>
 
-              {/* Price details */}
+              {/* Pricing */}
               <div className="flex items-center space-x-3 pt-1">
                 <span className="text-xl md:text-2xl font-black">
                   {formattedPrice(currency === "LKR" ? product.priceLKR : product.priceUSD)}
@@ -161,7 +161,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               </div>
             </div>
 
-            {/* Koko Installment Banner */}
+            {/* Installment Tag */}
             {currency === "LKR" && (
               <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/30 p-4 space-y-2">
                 <div className="flex justify-between items-center text-xs font-bold text-emerald-800 dark:text-emerald-300">
@@ -174,14 +174,14 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               </div>
             )}
 
-            {/* Short description */}
+            {/* Description */}
             <div className="border-t border-b border-neutral-100 dark:border-neutral-900 py-6">
               <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider leading-relaxed">
                 {product.description}
               </p>
             </div>
 
-            {/* Sizing selector */}
+            {/* Size Selector */}
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <span className="text-xs font-black uppercase tracking-widest text-muted-foreground">
@@ -216,7 +216,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               )}
             </div>
 
-            {/* Purchase action */}
+            {/* Cart Action */}
             <div className="space-y-4 pt-4">
               <Button
                 variant="primary"
@@ -243,7 +243,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               </div>
             </div>
 
-            {/* Fabric Details & Care instructions */}
+            {/* Technical Details */}
             <div className="space-y-3 pt-4">
               <h3 className="text-xs font-black uppercase tracking-widest text-foreground">
                 Technical details
