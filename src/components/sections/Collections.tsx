@@ -44,12 +44,19 @@ export const Collections: React.FC = () => {
 
   return (
     <section className="py-24 px-6 max-w-7xl mx-auto bg-background">
-      <div className="text-center mb-16 space-y-3">
-        <span className="text-xs font-black tracking-[0.25em] text-accent uppercase">
-          CURATED STYLES
-        </span>
-        <h2 className="text-2xl md:text-4xl font-extrabold uppercase tracking-wider">
-          Shop By Collection
+      <div className="text-left mb-16 space-y-3">
+        <h2
+          style={{
+            color: "#151515",
+            display: "inline",
+            fontFamily: "Prompt, sans-serif",
+            fontSize: "40px",
+            fontWeight: 600,
+            lineHeight: "48px",
+            textDecoration: "underline",
+          }}
+        >
+          NEW COLLECTION
         </h2>
       </div>
 
