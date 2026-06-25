@@ -220,10 +220,99 @@ export const Navbar: React.FC = () => {
   return (
     <>
       {/* Announcement Bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-[#151515] text-white text-[10px] font-bold uppercase tracking-[0.25em] text-center py-2.5">
-        {currency === "LKR"
-          ? "Free Island-Wide Delivery on Orders Above LKR 12,000"
-          : "Free Worldwide Shipping on Orders Above $100"}
+      <div 
+        className="fixed top-0 left-0 right-0 z-50 overflow-hidden select-none flex whitespace-nowrap marquee-container"
+        style={{
+          backgroundColor: "#151515",
+          color: "#fff",
+          fontSize: "17px",
+          fontWeight: 300,
+          lineHeight: "17px",
+          padding: "14px 0px"
+        }}
+      >
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+          }
+          .marquee-track {
+            display: flex;
+            flex-shrink: 0;
+            animation: marquee 25s linear infinite;
+          }
+          .marquee-container:hover .marquee-track {
+            animation-play-state: paused;
+          }
+        `}} />
+        <div className="marquee-track">
+          {[...Array(4)].map((_, idx) => (
+            <React.Fragment key={idx}>
+              <span
+                style={{
+                  alignItems: "center",
+                  color: "#fff",
+                  display: "flex",
+                  fontSize: "13px",
+                  letterSpacing: "0.39px",
+                  lineHeight: "13px",
+                  padding: "0px 20px",
+                  textTransform: "uppercase"
+                }}
+              >
+                FREE SHIPPING FOR ORDERS ABOVE Rs.9999.00
+              </span>
+              <span
+                style={{
+                  alignItems: "center",
+                  color: "#fff",
+                  display: "flex",
+                  fontSize: "13px",
+                  letterSpacing: "0.39px",
+                  lineHeight: "13px",
+                  padding: "0px 20px",
+                  textTransform: "uppercase"
+                }}
+              >
+                ORDERS WILL TAKE 4 TO 6 WORKING DAYS FOR DELIVERY
+              </span>
+            </React.Fragment>
+          ))}
+        </div>
+        <div className="marquee-track" aria-hidden="true">
+          {[...Array(4)].map((_, idx) => (
+            <React.Fragment key={idx}>
+              <span
+                style={{
+                  alignItems: "center",
+                  color: "#fff",
+                  display: "flex",
+                  fontSize: "13px",
+                  letterSpacing: "0.39px",
+                  lineHeight: "13px",
+                  padding: "0px 20px",
+                  textTransform: "uppercase"
+                }}
+              >
+                FREE SHIPPING FOR ORDERS ABOVE Rs.9999.00
+              </span>
+              <span
+                style={{
+                  alignItems: "center",
+                  color: "#fff",
+                  display: "flex",
+                  fontSize: "13px",
+                  letterSpacing: "0.39px",
+                  lineHeight: "13px",
+                  padding: "0px 20px",
+                  textTransform: "uppercase"
+                }}
+              >
+                ORDERS WILL TAKE 4 TO 6 WORKING DAYS FOR DELIVERY
+              </span>
+            </React.Fragment>
+          ))}
+        </div>
       </div>
 
       <header
@@ -232,7 +321,7 @@ export const Navbar: React.FC = () => {
             ? "bg-[#151515]/95 backdrop-blur-md border-b border-neutral-900 py-3 shadow-md"
             : "bg-gradient-to-b from-[#111111]/80 to-transparent py-5"
         }`}
-        style={{ top: "35px" }}
+        style={{ top: "45px" }}
         onMouseLeave={() => setActiveDropdown(null)}
       >
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 items-center">
