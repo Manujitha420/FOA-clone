@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { CartDrawer } from "@/components/layout/CartDrawer";
@@ -14,6 +14,20 @@ interface AccountPageProps {
 export default function AccountPage({ params }: AccountPageProps) {
   const { mode } = use(params);
   const isLogin = mode === "login";
+
+  const [emailFocused, setEmailFocused] = useState(false);
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordFocused, setPasswordFocused] = useState(false);
+  const [passwordValue, setPasswordValue] = useState("");
+
+  const [registerFirstFocused, setRegisterFirstFocused] = useState(false);
+  const [registerFirstValue, setRegisterFirstValue] = useState("");
+  const [registerLastFocused, setRegisterLastFocused] = useState(false);
+  const [registerLastValue, setRegisterLastValue] = useState("");
+  const [registerEmailFocused, setRegisterEmailFocused] = useState(false);
+  const [registerEmailValue, setRegisterEmailValue] = useState("");
+  const [registerPasswordFocused, setRegisterPasswordFocused] = useState(false);
+  const [registerPasswordValue, setRegisterPasswordValue] = useState("");
 
   // Page Container: Background color, text color, min height, and top padding to clear header
   return (
@@ -58,22 +72,94 @@ export default function AccountPage({ params }: AccountPageProps) {
               {/* Login Form */}
               <form className="space-y-4 text-left">
                 {/* Email Input */}
-                <div>
+                <div className="relative inline-block text-left w-full max-w-[520px]" style={{ margin: "0px 0px 10px" }}>
                   <input
                     type="email"
-                    placeholder="Email address"
-                    className="w-full px-4 py-3 border border-neutral-200 text-sm focus:outline-none focus:border-neutral-500 transition-colors placeholder:text-neutral-400 font-sans"
+                    value={emailValue || ""}
+                    onChange={(e) => setEmailValue(e.target.value)}
+                    onFocus={() => setEmailFocused(true)}
+                    onBlur={() => setEmailFocused(false)}
+                    style={{
+                      borderColor: emailFocused ? "#0066cc" : "#dedede",
+                      borderStyle: "solid",
+                      borderWidth: "1px",
+                      color: "#151515",
+                      display: "inline-block",
+                      fontFamily: "Prompt, sans-serif",
+                      fontSize: "12px",
+                      lineHeight: "13.8px",
+                      padding: "12px 17px",
+                      width: "100%",
+                      height: "48px",
+                      boxSizing: "border-box",
+                      borderRadius: "0px"
+                    }}
+                    className="focus:outline-none transition-colors"
                     required
                   />
+                  <label
+                    style={{
+                      position: "absolute",
+                      left: "14px",
+                      top: (emailFocused || emailValue) ? "0" : "50%",
+                      transform: "translateY(-50%)",
+                      fontSize: (emailFocused || emailValue) ? "10px" : "12px",
+                      color: emailFocused ? "#0066cc" : "#999999",
+                      backgroundColor: "#ffffff",
+                      padding: "0 6px",
+                      fontFamily: "Prompt, sans-serif",
+                      transition: "all 0.15s ease-out",
+                      pointerEvents: "none",
+                      lineHeight: "1"
+                    }}
+                  >
+                    Email address
+                  </label>
                 </div>
                 {/* Password Input */}
-                <div>
+                <div className="relative inline-block text-left w-full max-w-[520px]" style={{ margin: "0px 0px 10px" }}>
                   <input
                     type="password"
-                    placeholder="Password"
-                    className="w-full px-4 py-3 border border-neutral-200 text-sm focus:outline-none focus:border-neutral-500 transition-colors placeholder:text-neutral-400 font-sans"
+                    value={passwordValue || ""}
+                    onChange={(e) => setPasswordValue(e.target.value)}
+                    onFocus={() => setPasswordFocused(true)}
+                    onBlur={() => setPasswordFocused(false)}
+                    style={{
+                      borderColor: passwordFocused ? "#0066cc" : "#dedede",
+                      borderStyle: "solid",
+                      borderWidth: "1px",
+                      color: "#151515",
+                      display: "inline-block",
+                      fontFamily: "Prompt, sans-serif",
+                      fontSize: "12px",
+                      lineHeight: "13.8px",
+                      padding: "12px 17px",
+                      width: "100%",
+                      height: "48px",
+                      boxSizing: "border-box",
+                      borderRadius: "0px"
+                    }}
+                    className="focus:outline-none transition-colors"
                     required
                   />
+                  <label
+                    style={{
+                      position: "absolute",
+                      left: "14px",
+                      top: (passwordFocused || passwordValue) ? "0" : "50%",
+                      transform: "translateY(-50%)",
+                      fontSize: (passwordFocused || passwordValue) ? "10px" : "12px",
+                      color: passwordFocused ? "#0066cc" : "#999999",
+                      backgroundColor: "#ffffff",
+                      padding: "0 6px",
+                      fontFamily: "Prompt, sans-serif",
+                      transition: "all 0.15s ease-out",
+                      pointerEvents: "none",
+                      lineHeight: "1"
+                    }}
+                  >
+                    Password
+                  </label>
                 </div>
 
                 {/* Submit Button */}
@@ -142,37 +228,185 @@ export default function AccountPage({ params }: AccountPageProps) {
               {/* Register Form */}
               <form className="space-y-4 text-left">
                 {/* Name Inputs */}
-                <div className="grid grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    placeholder="First name"
-                    className="w-full px-4 py-3 border border-neutral-200 text-sm focus:outline-none focus:border-neutral-500 transition-colors placeholder:text-neutral-400 font-sans"
-                    required
-                  />
-                  <input
-                    type="text"
-                    placeholder="Last name"
-                    className="w-full px-4 py-3 border border-neutral-200 text-sm focus:outline-none focus:border-neutral-500 transition-colors placeholder:text-neutral-400 font-sans"
-                    required
-                  />
+                <div className="grid grid-cols-2 gap-4" style={{ margin: "0px 0px 10px" }}>
+                  <div className="relative w-full">
+                    <input
+                      type="text"
+                      value={registerFirstValue || ""}
+                      onChange={(e) => setRegisterFirstValue(e.target.value)}
+                      onFocus={() => setRegisterFirstFocused(true)}
+                      onBlur={() => setRegisterFirstFocused(false)}
+                      style={{
+                        borderColor: registerFirstFocused ? "#0066cc" : "#dedede",
+                        borderStyle: "solid",
+                        borderWidth: "1px",
+                        color: "#151515",
+                        display: "inline-block",
+                        fontFamily: "Prompt, sans-serif",
+                        fontSize: "12px",
+                        lineHeight: "13.8px",
+                        padding: "12px 17px",
+                        width: "100%",
+                        height: "48px",
+                        boxSizing: "border-box",
+                        borderRadius: "0px"
+                      }}
+                      className="focus:outline-none transition-colors"
+                      required
+                    />
+                    <label
+                      style={{
+                        position: "absolute",
+                        left: "14px",
+                        top: (registerFirstFocused || registerFirstValue) ? "0" : "50%",
+                        transform: "translateY(-50%)",
+                        fontSize: (registerFirstFocused || registerFirstValue) ? "10px" : "12px",
+                        color: registerFirstFocused ? "#0066cc" : "#999999",
+                        backgroundColor: "#ffffff",
+                        padding: "0 6px",
+                        fontFamily: "Prompt, sans-serif",
+                        transition: "all 0.15s ease-out",
+                        pointerEvents: "none",
+                        lineHeight: "1"
+                      }}
+                    >
+                      First name
+                    </label>
+                  </div>
+                  <div className="relative w-full">
+                    <input
+                      type="text"
+                      value={registerLastValue || ""}
+                      onChange={(e) => setRegisterLastValue(e.target.value)}
+                      onFocus={() => setRegisterLastFocused(true)}
+                      onBlur={() => setRegisterLastFocused(false)}
+                      style={{
+                        borderColor: registerLastFocused ? "#0066cc" : "#dedede",
+                        borderStyle: "solid",
+                        borderWidth: "1px",
+                        color: "#151515",
+                        display: "inline-block",
+                        fontFamily: "Prompt, sans-serif",
+                        fontSize: "12px",
+                        lineHeight: "13.8px",
+                        padding: "12px 17px",
+                        width: "100%",
+                        height: "48px",
+                        boxSizing: "border-box",
+                        borderRadius: "0px"
+                      }}
+                      className="focus:outline-none transition-colors"
+                      required
+                    />
+                    <label
+                      style={{
+                        position: "absolute",
+                        left: "14px",
+                        top: (registerLastFocused || registerLastValue) ? "0" : "50%",
+                        transform: "translateY(-50%)",
+                        fontSize: (registerLastFocused || registerLastValue) ? "10px" : "12px",
+                        color: registerLastFocused ? "#0066cc" : "#999999",
+                        backgroundColor: "#ffffff",
+                        padding: "0 6px",
+                        fontFamily: "Prompt, sans-serif",
+                        transition: "all 0.15s ease-out",
+                        pointerEvents: "none",
+                        lineHeight: "1"
+                      }}
+                    >
+                      Last name
+                    </label>
+                  </div>
                 </div>
                 {/* Email Input */}
-                <div>
+                <div className="relative inline-block text-left w-full max-w-[520px]" style={{ margin: "0px 0px 10px" }}>
                   <input
                     type="email"
-                    placeholder="Email address"
-                    className="w-full px-4 py-3 border border-neutral-200 text-sm focus:outline-none focus:border-neutral-500 transition-colors placeholder:text-neutral-400 font-sans"
+                    value={registerEmailValue || ""}
+                    onChange={(e) => setRegisterEmailValue(e.target.value)}
+                    onFocus={() => setRegisterEmailFocused(true)}
+                    onBlur={() => setRegisterEmailFocused(false)}
+                    style={{
+                      borderColor: registerEmailFocused ? "#0066cc" : "#dedede",
+                      borderStyle: "solid",
+                      borderWidth: "1px",
+                      color: "#151515",
+                      display: "inline-block",
+                      fontFamily: "Prompt, sans-serif",
+                      fontSize: "12px",
+                      lineHeight: "13.8px",
+                      padding: "12px 17px",
+                      width: "100%",
+                      height: "48px",
+                      boxSizing: "border-box",
+                      borderRadius: "0px"
+                    }}
+                    className="focus:outline-none transition-colors"
                     required
                   />
+                  <label
+                    style={{
+                      position: "absolute",
+                      left: "14px",
+                      top: (registerEmailFocused || registerEmailValue) ? "0" : "50%",
+                      transform: "translateY(-50%)",
+                      fontSize: (registerEmailFocused || registerEmailValue) ? "10px" : "12px",
+                      color: registerEmailFocused ? "#0066cc" : "#999999",
+                      backgroundColor: "#ffffff",
+                      padding: "0 6px",
+                      fontFamily: "Prompt, sans-serif",
+                      transition: "all 0.15s ease-out",
+                      pointerEvents: "none",
+                      lineHeight: "1"
+                    }}
+                  >
+                    Email address
+                  </label>
                 </div>
                 {/* Password Input */}
-                <div>
+                <div className="relative inline-block text-left w-full max-w-[520px]" style={{ margin: "0px 0px 10px" }}>
                   <input
                     type="password"
-                    placeholder="Password"
-                    className="w-full px-4 py-3 border border-neutral-200 text-sm focus:outline-none focus:border-neutral-500 transition-colors placeholder:text-neutral-400 font-sans"
+                    value={registerPasswordValue || ""}
+                    onChange={(e) => setRegisterPasswordValue(e.target.value)}
+                    onFocus={() => setRegisterPasswordFocused(true)}
+                    onBlur={() => setRegisterPasswordFocused(false)}
+                    style={{
+                      borderColor: registerPasswordFocused ? "#0066cc" : "#dedede",
+                      borderStyle: "solid",
+                      borderWidth: "1px",
+                      color: "#151515",
+                      display: "inline-block",
+                      fontFamily: "Prompt, sans-serif",
+                      fontSize: "12px",
+                      lineHeight: "13.8px",
+                      padding: "12px 17px",
+                      width: "100%",
+                      height: "48px",
+                      boxSizing: "border-box",
+                      borderRadius: "0px"
+                    }}
+                    className="focus:outline-none transition-colors"
                     required
                   />
+                  <label
+                    style={{
+                      position: "absolute",
+                      left: "14px",
+                      top: (registerPasswordFocused || registerPasswordValue) ? "0" : "50%",
+                      transform: "translateY(-50%)",
+                      fontSize: (registerPasswordFocused || registerPasswordValue) ? "10px" : "12px",
+                      color: registerPasswordFocused ? "#0066cc" : "#999999",
+                      backgroundColor: "#ffffff",
+                      padding: "0 6px",
+                      fontFamily: "Prompt, sans-serif",
+                      transition: "all 0.15s ease-out",
+                      pointerEvents: "none",
+                      lineHeight: "1"
+                    }}
+                  >
+                    Password
+                  </label>
                 </div>
 
                 {/* Submit Button */}
