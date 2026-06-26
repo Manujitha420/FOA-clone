@@ -433,34 +433,72 @@ export const Navbar: React.FC = () => {
             className={`flex items-center justify-self-end space-x-6 text-[11px] font-black tracking-[0.25em] transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`}
             onMouseEnter={() => setActiveDropdown(null)}
           >
-            <Link href="/account/login" className="hidden md:inline hover:opacity-75 transition-opacity">
+            <Link
+              href="/account/login"
+              className="hidden md:inline hover:opacity-75 transition-opacity"
+              style={{
+                color: isHeaderActive ? "#151515" : "#ffffff",
+                fontSize: "15px",
+                fontWeight: 500,
+                lineHeight: "25.5px",
+                textTransform: "uppercase"
+              }}
+            >
               LOG IN
             </Link>
 
             {pathname.startsWith("/account") ? (
               <Link
                 href="/search"
-                className="hover:opacity-75 transition-opacity flex items-center"
+                className="hover:opacity-75 transition-opacity"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  color: isHeaderActive ? "#151515" : "#ffffff",
+                  fontFamily: "Prompt, sans-serif",
+                  fontSize: "17px",
+                  fontWeight: 300,
+                  lineHeight: "17px",
+                  padding: "0px 10px"
+                }}
                 aria-label="Search items"
               >
-                <Search className="h-4.5 w-4.5 stroke-[2.5]" />
+                <Search style={{ width: "17px", height: "17px" }} strokeWidth={1.5} />
               </Link>
             ) : (
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="hover:opacity-75 transition-opacity flex items-center cursor-pointer"
+                className="hover:opacity-75 transition-opacity cursor-pointer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  color: isHeaderActive ? "#151515" : "#ffffff",
+                  fontFamily: "Prompt, sans-serif",
+                  fontSize: "17px",
+                  fontWeight: 300,
+                  lineHeight: "17px",
+                  padding: "0px 10px"
+                }}
                 aria-label="Search items"
               >
-                <Search className="h-4.5 w-4.5 stroke-[2.5]" />
+                <Search style={{ width: "17px", height: "17px" }} strokeWidth={1.5} />
               </button>
             )}
 
             <button
               onClick={() => setCartOpen(true)}
-              className="relative p-1 hover:opacity-75 transition-opacity"
+              className="relative hover:opacity-75 transition-opacity"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                color: isHeaderActive ? "#151515" : "#ffffff",
+                fontSize: "17px",
+                fontWeight: 300,
+                lineHeight: "17px"
+              }}
               aria-label="Shopping Cart"
             >
-              <CartIcon className={`h-5 w-5 transition-colors duration-300 ${isHeaderActive ? "text-[#151515]" : "text-white"}`} />
+              <CartIcon className="w-[17px] h-[17px] transition-colors duration-300" />
               {totalItems > 0 && (
                 <span className={`absolute -top-1.5 -right-1.5 text-[9px] font-black rounded-full h-4 w-4 flex items-center justify-center transition-colors duration-300 ${isHeaderActive ? "bg-black text-white" : "bg-white text-black"}`}>
                   {totalItems}
