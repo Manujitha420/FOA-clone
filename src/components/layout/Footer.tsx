@@ -36,7 +36,7 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-[#111111] text-white pt-16 pb-12 border-t border-neutral-850 relative">
+    <footer className="bg-[#111111] text-white pt-16 pb-12 relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16">
           {/* Left Column: Logo & Socials (stretched with flex to align socials to the bottom) */}

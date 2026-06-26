@@ -7,43 +7,83 @@ import { Button } from "@/components/ui/button";
 
 export const PromoBanner: React.FC = () => {
   return (
-    <section className="relative py-32 bg-black text-white overflow-hidden flex items-center justify-center">
-      {/* Background Image with slight transparency */}
+    <section
+      className="relative bg-black text-white overflow-hidden flex items-center justify-center mx-auto w-full"
+      style={{
+        maxWidth: "1440px",
+        height: "812px",
+      }}
+    >
+      {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-40 select-none pointer-events-none"
+        className="absolute inset-0 bg-cover bg-center opacity-100 select-none pointer-events-none"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1548624149-f7b2e65922b1?q=80&w=1600&auto=format&fit=crop')",
+            "url('https://media.licdn.com/dms/image/v2/D4D16AQEomYovJmxROw/profile-displaybackgroundimage-shrink_200_800/B4DZdE0XHAHkAU-/0/1749206267272?e=2147483647&v=beta&t=rHRtvrzd_r7WyLc9NbDhmtqj2azDc4r_im1-btFnVLs')",
         }}
       />
+      {/* Dark Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-black/40 z-[1]" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-6">
-        <motion.span
+        <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-xs md:text-sm font-black tracking-[0.3em] uppercase text-accent"
+          style={{
+            color: "#fff",
+            fontFamily: "Prompt, sans-serif",
+            fontSize: "15px",
+            fontWeight: 500,
+            letterSpacing: "6px",
+            lineHeight: "24px",
+            margin: "0px auto 20px",
+            textAlign: "center",
+            textTransform: "uppercase",
+            width: "700px",
+            height: "24px",
+            maxWidth: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
         >
-          ELEVATE YOUR TRAINING
-        </motion.span>
+          IRON ISLAND
+        </motion.div>
         <motion.h2
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-black uppercase tracking-wider leading-none"
-        >
-          Built for daily movement, styled for street culture.
+          style={{
+            color: "#fff",
+            fontFamily: "Prompt",
+            fontSize: "52px",
+            fontWeight: "600",
+            lineHeight: "60px",
+            margin: "0px 0px 20px",
+            textAlign: "center",
+            maxWidth: "100%"
+          }}>
+          STRONGEST IN THE CITY
         </motion.h2>
         <motion.p
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="max-w-xl mx-auto text-xs md:text-sm text-neutral-300 font-semibold uppercase tracking-widest leading-relaxed"
+          style={{
+            color: "#fff",
+            fontFamily: "Prompt",
+            fontSize: "17px",
+            fontWeight: "300",
+            lineHeight: "27.2px",
+            margin: "0px 0px 20px",
+            textAlign: "center"
+          }}
         >
-          Our athletic cuts and street silhouettes represent the ultimate freedom of expression. Handcrafted locally using premium fabric blends.
+          Test your limits with a short run, long run, or lifting showdown. Limited spots, lock in your entry today!
         </motion.p>
         <motion.div
           variants={fadeUp}
@@ -52,16 +92,41 @@ export const PromoBanner: React.FC = () => {
           viewport={{ once: true }}
           className="pt-4"
         >
-          <Button
-            variant="accent"
-            size="md"
+          <button
             onClick={() => {
-              const el = document.getElementById("men");
+              const el = document.getElementById("collections");
               if (el) el.scrollIntoView({ behavior: "smooth" });
             }}
+            className="group flex items-center justify-center border border-white rounded-[50px] bg-transparent transition-all duration-300 hover:bg-white hover:border-white mx-auto"
+            style={{
+              alignItems: "center",
+              color: "#ffffffff",
+              borderColor: "#fff",
+              borderRadius: "50px",
+              borderStyle: "solid",
+              borderWidth: "1px",
+              display: "flex",
+              fontFamily: "Prompt, sans-serif",
+              justifyContent: "center",
+              margin: "25px auto 0px",
+              padding: "7px 30px",
+              textAlign: "center"
+            }}
           >
-            Explore The Range
-          </Button>
+            <span
+              className="transition-colors duration-300 text-white group-hover:text-black"
+              style={{
+                fontSize: "14px",
+                fontWeight: 600,
+                letterSpacing: "0.28px",
+                lineHeight: "22.4px",
+                textAlign: "center",
+                textTransform: "uppercase"
+              }}
+            >
+              Explore
+            </span>
+          </button>
         </motion.div>
       </div>
     </section>

@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { CartDrawer } from "@/components/layout/CartDrawer";
@@ -7,9 +6,9 @@ import { Hero } from "@/components/sections/Hero";
 import { Collections } from "@/components/sections/Collections";
 import { CategoryShowcase } from "@/components/sections/CategoryShowcase";
 import { PromoImage } from "@/components/sections/PromoImage";
-import { ProductsGrid } from "@/components/sections/ProductsGrid";
+import { CampaignCollections } from "@/components/sections/CampaignCollections";
+import { BestSellers } from "@/components/sections/BestSellers";
 import { PromoBanner } from "@/components/sections/PromoBanner";
-import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { Footer } from "@/components/layout/Footer";
 
 export default function StorefrontPage() {
@@ -34,16 +33,14 @@ export default function StorefrontPage() {
         {/* Promo Image Showcase */}
         <PromoImage />
 
-        {/* Dynamic tabs + products grid */}
-        <div id="men">
-          <ProductsGrid />
-        </div>
+        {/* Campaign Collections Showcase */}
+        <CampaignCollections />
+
+        {/* Best Sellers Segment */}
+        <BestSellers />
 
         {/* Promo Statement */}
         <PromoBanner />
-
-        {/* Native Accordion FAQ segment */}
-        <FaqAccordion />
       </main>
 
       {/* Comprehensive brand Footer */}
