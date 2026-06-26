@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { CartDrawer } from "@/components/layout/CartDrawer";
 import { Hero } from "@/components/sections/Hero";
 import { Collections } from "@/components/sections/Collections";
+import { CategoryShowcase } from "@/components/sections/CategoryShowcase";
 import { ProductsGrid } from "@/components/sections/ProductsGrid";
 import { PromoBanner } from "@/components/sections/PromoBanner";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
@@ -25,6 +26,9 @@ export default function StorefrontPage() {
         <div id="collections">
           <Collections />
         </div>
+
+        {/* Categories Showcase (Mens, Womens, Accessories) */}
+        <CategoryShowcase />
 
         {/* Dynamic tabs + products grid */}
         <div id="men">
