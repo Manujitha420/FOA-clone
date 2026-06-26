@@ -375,7 +375,7 @@ export const Navbar: React.FC = () => {
               {navItems.map((item) => (
                 <div
                   key={item.name}
-                  className="relative py-1 cursor-pointer"
+                  className="relative py-1 cursor-pointer group"
                   onMouseEnter={() => {
                     if (item.hasDropdown) {
                       setActiveDropdown(item.name);
@@ -384,9 +384,10 @@ export const Navbar: React.FC = () => {
                     }
                   }}
                 >
-                  <Link href={item.href} className="flex items-center hover:opacity-75 transition-opacity">
+                  <Link href={item.href} className="relative flex items-center pb-1">
                     {item.name}
                     {item.hasDropdown && <span className="ml-1 text-[8px] font-bold">⌵</span>}
+                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-current transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
                   </Link>
                 </div>
               ))}
@@ -435,7 +436,7 @@ export const Navbar: React.FC = () => {
           >
             <Link
               href="/account/login"
-              className="hidden md:inline hover:opacity-75 transition-opacity"
+              className="hidden md:inline-block relative pb-1 group"
               style={{
                 color: isHeaderActive ? "#151515" : "#ffffff",
                 fontSize: "15px",
@@ -445,6 +446,7 @@ export const Navbar: React.FC = () => {
               }}
             >
               LOG IN
+              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-current transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
             </Link>
 
             {pathname.startsWith("/account") ? (
@@ -522,24 +524,62 @@ export const Navbar: React.FC = () => {
                 {getDropdownColumns(activeDropdown)?.map((col, idx) => (
                   <div key={idx} className="space-y-4">
                     {col.items.length > 0 ? (
-                      <h4 className="text-[11px] font-black uppercase tracking-[0.2em] text-[#111111]">
+                      <h4
+                        style={{
+                          color: "#151515",
+                          display: "inline-block",
+                          fontFamily: "Prompt, sans-serif",
+                          fontSize: "12px",
+                          fontWeight: 600,
+                          letterSpacing: "1.2px",
+                          lineHeight: "13.2px",
+                          margin: "0px 0px 10px",
+                          padding: "5px 0px",
+                          textAlign: "left",
+                          textTransform: "uppercase"
+                        }}
+                      >
                         {col.title}
                       </h4>
                     ) : (
                       <Link
                         href={col.href}
-                        className="text-[11px] font-black uppercase tracking-[0.2em] text-[#111111] hover:opacity-75 transition-opacity block"
+                        style={{
+                          color: "#151515",
+                          display: "inline-block",
+                          fontFamily: "Prompt, sans-serif",
+                          fontSize: "12px",
+                          fontWeight: 600,
+                          letterSpacing: "1.2px",
+                          lineHeight: "13.2px",
+                          margin: "0px 0px 10px",
+                          padding: "5px 0px",
+                          textAlign: "left",
+                          textTransform: "uppercase"
+                        }}
+                        className="hover:opacity-75 transition-opacity block"
                       >
                         {col.title}
                       </Link>
                     )}
                     {col.items.length > 0 && (
-                      <ul className="space-y-2.5">
+                      <ul className="space-y-0.5">
                         {col.items.map((subItem) => (
                           <li key={subItem.name}>
                             <Link
                               href={subItem.href}
-                              className="text-[10px] font-bold tracking-[0.15em] text-[#444444] hover:text-black transition-colors uppercase block"
+                              className="hover:opacity-75 transition-opacity block"
+                              style={{
+                                color: "#151515",
+                                display: "inline-block",
+                                fontFamily: "Prompt, sans-serif",
+                                fontSize: "15px",
+                                fontWeight: 300,
+                                lineHeight: "16.5px",
+                                padding: "5px 0px",
+                                textAlign: "left",
+                                textTransform: "uppercase"
+                              }}
                             >
                               {subItem.name}
                             </Link>
