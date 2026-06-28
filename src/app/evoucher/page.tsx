@@ -1134,7 +1134,7 @@ export default function EVoucherPage() {
             LINEN COLLECTION
           </h2>
           <button
-            className="bg-white text-black  hover:bg-black hover:text-white transition-colors duration-300"
+            className="bg-white text-black border hover:bg-black hover:text-white transition-colors duration-300"
             style={{
               borderRadius: "50px",
               fontFamily: "Prompt, sans-serif",
