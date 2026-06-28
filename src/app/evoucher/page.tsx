@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Ruler, Plus, Star, Upload } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { CartDrawer } from "@/components/layout/CartDrawer";
@@ -51,6 +52,8 @@ export default function EVoucherPage() {
   const [quantity, setQuantity] = useState(1);
   const [sendAsGift, setSendAsGift] = useState(false);
   const [giftMessage, setGiftMessage] = useState("");
+  const [recipientEmail, setRecipientEmail] = useState("");
+  const [recipientName, setRecipientName] = useState("");
 
   // Review state
   const [reviewOpen, setReviewOpen] = useState(false);
@@ -88,7 +91,7 @@ export default function EVoucherPage() {
       <CartDrawer />
 
       {/* Content Container */}
-      <main className="flex-1 pt-36 pb-20">
+      <main className="flex-1 pt-44 pb-20">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-6 mb-8">
           <nav className="flex items-center space-x-2 text-[11px] font-semibold tracking-widest text-neutral-400 uppercase">
@@ -103,56 +106,121 @@ export default function EVoucherPage() {
 
           {/* Left Column: Image */}
           <div className="lg:col-span-7">
-            <div className="relative w-full max-w-[580px] mx-auto">
-              {/* Card Face */}
-              <div className="bg-black flex flex-col items-center justify-center py-20 px-12">
-                {/* Logo */}
-                <div className="flex items-center space-x-4 mb-10">
-                  <span className="text-white text-5xl font-black tracking-[-0.02em]">F</span>
-                  <span className="text-white text-3xl font-light">·</span>
-                  <span className="text-white text-5xl font-black tracking-[-0.02em]">O</span>
-                  <span className="text-white text-3xl font-light">·</span>
-                  <span className="text-white text-5xl font-black tracking-[-0.02em]">A</span>
-                </div>
-                <p className="text-white text-xl font-light tracking-[0.3em] uppercase">E - GIFT CARD</p>
-              </div>
-              {/* Card Footer */}
-              <div className="bg-neutral-200 py-4 text-center">
-                <p className="text-[13px] font-medium text-neutral-600 tracking-wide">
-                  Valid for use on the FOACLOTHING.COM website only
-                </p>
-              </div>
+            <div className="relative w-full max-w-[710px] mx-auto aspect-square overflow-hidden bg-neutral-50">
+              <Image
+                src="https://foaclothing.com/cdn/shop/files/FOA-E-Voucher_29df68fa-be21-4088-976a-524745103013.jpg?v=1754043382&width=540"
+                alt="FOA E-Voucher"
+                fill
+                className="object-contain"
+                sizes="(max-width: 710px) 100vw, 710px"
+              />
             </div>
           </div>
 
           {/* Right Column: Pricing & Options */}
           <div className="lg:col-span-5 flex flex-col space-y-6">
             {/* Title */}
-            <h1 className="text-2xl font-black uppercase tracking-[0.15em] text-[#111]">
+            <h1 className="text-2xl font-black uppercase tracking-[0.15em] text-[#111]"
+              style={{
+                color: "#151515",
+                fontFamily: "Prompt",
+                fontSize: "28px",
+                fontWeight: 500,
+                lineHeight: "34px",
+                margin: "0px 0px 25px",
+                textTransform: "uppercase"
+              }}
+            >
               E – VOUCHER
             </h1>
 
-            {/* Price */}
-            <div>
-              <p className="text-2xl font-black text-[#111]">
-                {formatPrice(selectedValue)}
-              </p>
+            {/* Price Section */}
+            <div
+              style={{
+                width: "480px",
+                height: "151px",
+                maxWidth: "100%",
+                color: "#151515",
+                fontFamily: "Prompt, sans-serif",
+                fontSize: "17px",
+                fontWeight: 300,
+                lineHeight: "27.2px"
+              }}
+            >
+              <div className="mb-1">
+                <span
+                  style={{
+                    color: "#151515",
+                    display: "inline-block",
+                    fontSize: "22.4px",
+                    fontWeight: 550,
+                    letterSpacing: "0.448px",
+                    lineHeight: "35.84px",
+                    width: "auto",
+                    minWidth: "127px",
+                    height: "25px",
+                    whiteSpace: "nowrap"
+                  }}
+                >
+                  {formatPrice(selectedValue)}
+                </span>
+              </div>
+
               {currency === "LKR" && (
-                <div className="mt-2 space-y-0.5">
-                  <p className="text-[11px] text-neutral-500 font-semibold">
-                    3 X {getKokoSplit()} or 4.5% Cashback with{" "}
-                    <span className="bg-[#1b2240] text-white text-[9px] font-bold px-2 py-0.5 rounded-sm tracking-widest">
-                      mintpay
-                    </span>
-                    {" "}ⓘ
-                  </p>
-                  <p className="text-[11px] text-neutral-500 font-semibold">
-                    or pay in 3 x {getKokoSplit()} with{" "}
-                    <span className="bg-[#f4c900] text-black text-[9px] font-black px-2 py-0.5 rounded-sm tracking-widest">
-                      koko
-                    </span>
-                    {" "}ⓘ
-                  </p>
+                <div className="mt-3 space-y-1.5">
+                  {/* Mintpay */}
+                  <div
+                    className="flex items-center flex-wrap gap-1 text-[9px] leading-tight text-neutral-500 font-bold uppercase tracking-wider"
+                    style={{
+                      fontFamily: "Prompt, sans-serif",
+                      letterSpacing: "0.3px",
+                      lineHeight: "13px",
+                      textAlign: "left"
+                    }}
+                  >
+                    <span>3 X {getKokoSplit()} or 4.5% Cashback with</span>
+                    <a href="https://mintpay.lk" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
+                      <img
+                        src="https://s3.amazonaws.com/bizenglish/wp-content/uploads/2022/10/28174525/Mintpay-Logo.jpg"
+                        alt="Mintpay"
+                        className="h-3.5 w-auto object-contain mix-blend-multiply"
+                      />
+                    </a>
+                    <a href="https://mintpay.lk/education" target="_blank" rel="noopener noreferrer" className="inline-flex items-center ml-0.5">
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDwo2P5BH9VbhE7hHG6K8IrDRjlqQx9Zl4GLwhJX8VVw&s=10"
+                        alt="Info"
+                        className="h-3 w-3 object-contain"
+                      />
+                    </a>
+                  </div>
+
+                  {/* Koko */}
+                  <div
+                    className="flex items-center flex-wrap gap-1 text-[9px] leading-tight text-neutral-500 font-bold uppercase tracking-wider"
+                    style={{
+                      fontFamily: "Prompt, sans-serif",
+                      letterSpacing: "0.3px",
+                      lineHeight: "13px",
+                      textAlign: "left"
+                    }}
+                  >
+                    <span>or pay in 3 x {getKokoSplit()} with</span>
+                    <a href="https://paykoko.com/customer-education?Amount=100" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
+                      <img
+                        src="https://qa-merchant.paykoko.com/assets/images/logo.png"
+                        alt="Koko"
+                        className="h-3.5 w-auto object-contain mix-blend-multiply"
+                      />
+                    </a>
+                    <a href="https://paykoko.com/customer-education?Amount=100" target="_blank" rel="noopener noreferrer" className="inline-flex items-center ml-0.5">
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDwo2P5BH9VbhE7hHG6K8IrDRjlqQx9Zl4GLwhJX8VVw&s=10"
+                        alt="Info"
+                        className="h-3 w-3 object-contain"
+                      />
+                    </a>
+                  </div>
                 </div>
               )}
             </div>
@@ -167,11 +235,13 @@ export default function EVoucherPage() {
                   <button
                     key={idx}
                     onClick={() => setSelectedIdx(idx)}
-                    className={`px-4 py-2 border text-xs tracking-wider uppercase transition-colors font-medium ${
-                      selectedIdx === idx
-                        ? "border-[#111] bg-[#111] text-white"
-                        : "border-neutral-200 text-neutral-600 hover:border-[#111] hover:text-black"
-                    }`}
+                    className={`px-4 py-2 border text-xs tracking-wider uppercase transition-colors font-medium ${selectedIdx === idx
+                      ? "border-[#111] bg-[#111] text-white"
+                      : "border-neutral-200 text-neutral-600 hover:border-[#111] hover:text-black"
+                      }`}
+                    style={{
+                      borderRadius: "300px"
+                    }}
                   >
                     {formatPrice(val)}
                   </button>
@@ -181,11 +251,43 @@ export default function EVoucherPage() {
 
             {/* Accordion Block */}
             <div className="border-t border-b border-neutral-200">
+              {/* Size Chart Link */}
+              <button
+                className="w-full py-4 flex items-center space-x-2 text-[11px] font-black tracking-widest text-[#111] uppercase hover:opacity-70 transition-opacity border-b border-neutral-200"
+              >
+                <Ruler className="h-4 w-4 text-[#111] stroke-[1.5]" />
+                <span
+                  style={{
+                    color: "#151515",
+                    display: "inline",
+                    fontFamily: "Arial",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    lineHeight: "14px",
+                    textAlign: "center"
+
+                  }}>
+                  SIZE CHART
+                </span>
+              </button>
+
+              {/* Description Accordion */}
               <button
                 onClick={() => setDescriptionOpen(!descriptionOpen)}
                 className="w-full py-4 flex items-center justify-between text-[11px] font-black tracking-widest text-[#111] uppercase hover:opacity-70 transition-opacity"
               >
-                <span>Description</span>
+                <span
+                  style={{
+                    color: "#151515",
+                    display: "inline",
+                    fontFamily: "Arial",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    lineHeight: "14px",
+                    textAlign: "center"
+
+                  }}
+                >Description</span>
                 {descriptionOpen ? (
                   <span className="text-base font-light">−</span>
                 ) : (
@@ -194,9 +296,18 @@ export default function EVoucherPage() {
               </button>
               {descriptionOpen && (
                 <div className="px-4 pb-4 border-t border-neutral-100">
-                  <div className="pt-3 space-y-2">
+                  <div className="pt-3 space-y-1">
                     {DESCRIPTION_TEXT.map((line, i) => (
-                      <p key={i} className="text-[12px] text-neutral-700 leading-relaxed">
+                      <p
+                        key={i}
+                        style={{
+                          color: "#151515",
+                          fontFamily: "Prompt, sans-serif",
+                          fontSize: "15px",
+                          fontWeight: 300,
+                          lineHeight: "24px"
+                        }}
+                      >
                         {line}
                       </p>
                     ))}
@@ -214,44 +325,87 @@ export default function EVoucherPage() {
                   onChange={(e) => setSendAsGift(e.target.checked)}
                   className="h-4 w-4 border border-neutral-400 rounded-sm cursor-pointer accent-[#2563eb]"
                 />
-                <span className="text-[12px] font-medium text-neutral-600 group-hover:text-black transition-colors">
+                <span
+                  style={{
+                    color: "#151515",
+                    display: "inline",
+                    fontSize: "13px",
+                    letterSpacing: "0.26px",
+                    lineHeight: "20.8px"
+                  }}
+                >
                   I want to send this as a gift
                 </span>
               </label>
 
               {sendAsGift && (
-                <div className="space-y-3">
+                <div className="space-y-4 pt-2">
                   {/* Recipient email */}
-                  <input
-                    type="email"
-                    placeholder="Recipient email"
-                    className="w-full border border-neutral-300 px-4 py-3.5 text-[13px] text-neutral-700 placeholder:text-neutral-400 focus:outline-none focus:border-[#2563eb] transition-colors"
-                  />
+                  <div className="relative">
+                    <input
+                      type="email"
+                      id="recipient-email"
+                      placeholder=" "
+                      value={recipientEmail}
+                      onChange={(e) => setRecipientEmail(e.target.value)}
+                      className="peer w-full border border-neutral-300 px-4 py-3.5 text-[13px] text-neutral-700 focus:outline-none focus:border-[#2563eb] transition-colors bg-white"
+                    />
+                    <label
+                      htmlFor="recipient-email"
+                      className="absolute left-4 top-0 -translate-y-1/2 text-[11px] text-neutral-400 pointer-events-none transition-all duration-200 bg-white px-1.5
+                                 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[13px] peer-placeholder-shown:translate-y-0
+                                 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-[11px] peer-focus:text-[#2563eb]"
+                    >
+                      Recipient email
+                    </label>
+                  </div>
 
                   {/* Recipient name */}
-                  <input
-                    type="text"
-                    placeholder="Recipient name (optional)"
-                    className="w-full border border-neutral-300 px-4 py-3.5 text-[13px] text-neutral-700 placeholder:text-neutral-400 focus:outline-none focus:border-[#2563eb] transition-colors"
-                  />
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="recipient-name"
+                      placeholder=" "
+                      value={recipientName}
+                      onChange={(e) => setRecipientName(e.target.value)}
+                      className="peer w-full border border-neutral-300 px-4 py-3.5 text-[13px] text-neutral-700 focus:outline-none focus:border-[#2563eb] transition-colors bg-white"
+                    />
+                    <label
+                      htmlFor="recipient-name"
+                      className="absolute left-4 top-0 -translate-y-1/2 text-[11px] text-neutral-400 pointer-events-none transition-all duration-200 bg-white px-1.5
+                                 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[13px] peer-placeholder-shown:translate-y-0
+                                 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-[11px] peer-focus:text-[#2563eb]"
+                    >
+                      Recipient name (optional)
+                    </label>
+                  </div>
 
                   {/* Message textarea */}
-                  <div className="space-y-1">
+                  <div className="relative space-y-1">
                     <textarea
-                      placeholder="Message (optional)"
+                      id="gift-message"
+                      placeholder=" "
                       maxLength={200}
                       rows={6}
                       onChange={(e) => setGiftMessage(e.target.value)}
                       value={giftMessage}
-                      className="w-full border border-neutral-300 px-4 py-3.5 text-[13px] text-neutral-700 placeholder:text-neutral-400 focus:outline-none focus:border-[#2563eb] transition-colors resize-y"
+                      className="peer w-full border border-neutral-300 px-4 py-3.5 text-[13px] text-neutral-700 focus:outline-none focus:border-[#2563eb] transition-colors resize-y bg-white"
                     />
+                    <label
+                      htmlFor="gift-message"
+                      className="absolute left-4 top-0 -translate-y-1/2 text-[11px] text-neutral-400 pointer-events-none transition-all duration-200 bg-white px-1.5
+                                 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[13px] peer-placeholder-shown:translate-y-0
+                                 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-[11px] peer-focus:text-[#2563eb]"
+                    >
+                      Message (optional)
+                    </label>
                     <p className="text-[12px] font-semibold text-neutral-600">
                       {giftMessage.length}/200 characters max
                     </p>
                   </div>
 
                   {/* Send on date */}
-                  <div className="relative border border-neutral-300 px-4 pb-3 pt-2">
+                  <div className="relative border border-neutral-300 px-4 pb-3 pt-2 bg-white">
                     <label className="block text-[11px] font-semibold text-neutral-400 mb-1">
                       Send on (optional)
                     </label>
@@ -267,10 +421,10 @@ export default function EVoucherPage() {
             {/* Quantity & Cart Controls */}
             <div className="flex items-center gap-3">
               {/* Quantity Selector */}
-              <div className="flex items-center border border-neutral-300 h-11">
+              <div className="flex items-center border border-neutral-300 h-11 rounded-full overflow-hidden">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="px-3 h-full text-lg font-light hover:bg-neutral-100 transition-colors"
+                  className="px-3 h-full text-lg font-light hover:bg-neutral-100 "
                 >
                   −
                 </button>
@@ -279,27 +433,49 @@ export default function EVoucherPage() {
                 </span>
                 <button
                   onClick={() => setQuantity((q) => q + 1)}
-                  className="px-3 h-full text-lg font-light hover:bg-neutral-100 transition-colors"
+                  className="px-3 h-full text-lg font-light hover:bg-neutral-100 "
                 >
                   +
                 </button>
               </div>
 
               {/* Add To Cart */}
-              <button className="flex-1 h-11 bg-white text-[#111] text-[11px] font-black tracking-[0.2em] uppercase border border-[#111] hover:bg-[#111] hover:text-white transition-all duration-200 rounded-full">
+              <button
+                className="flex-1 h-11 border border-[#151515] bg-[#151515] text-white hover:bg-transparent hover:text-[#151515] transition-all duration-300 rounded-full"
+                style={{
+                  fontFamily: "Prompt, sans-serif",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  letterSpacing: "0.28px",
+                  lineHeight: "14px",
+                  textAlign: "center",
+                  textTransform: "uppercase"
+                }}
+              >
                 Add to Cart
               </button>
             </div>
 
             {/* Wishlist Button */}
-            <button className="w-full h-11 bg-white text-[#111] text-[11px] font-black tracking-[0.2em] uppercase border border-[#111] hover:bg-[#111] hover:text-white transition-all duration-200 rounded-full">
+            <button
+              className="w-full h-11 border border-[#151515] bg-[#151515] text-white hover:bg-transparent hover:text-[#151515] transition-all duration-300 rounded-full"
+              style={{
+                fontFamily: "Prompt, sans-serif",
+                fontSize: "14px",
+                fontWeight: 600,
+                letterSpacing: "0.28px",
+                lineHeight: "14px",
+                textAlign: "center",
+                textTransform: "uppercase"
+              }}
+            >
               Add to Wishlist
             </button>
 
             {/* Shipping Tag */}
             <div className="flex items-center space-x-3 py-3 border-t border-neutral-100">
               <div className="text-[11px] text-neutral-500 font-semibold flex items-center space-x-2">
-                <span>🚚</span>
+                <Image src="https://cdn.shopify.com/s/files/1/0750/4415/9772/files/free_delivery.png?v=1761649926" alt="Free Delivery" width={20} height={20} className="object-contain" />
                 <span>Free shipping for orders above Rs.9999.00</span>
               </div>
             </div>
@@ -318,7 +494,7 @@ export default function EVoucherPage() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pb-8 border-b border-neutral-200">
             <div className="flex flex-col items-center sm:items-start gap-1">
               <div className="flex items-center gap-1">
-                {[1,2,3,4,5].map((s) => (
+                {[1, 2, 3, 4, 5].map((s) => (
                   <Star key={s} className="h-5 w-5 text-neutral-300" />
                 ))}
               </div>
@@ -326,11 +502,10 @@ export default function EVoucherPage() {
             </div>
             <button
               onClick={() => setReviewOpen((v) => !v)}
-              className={`px-8 py-3 text-[11px] font-black tracking-[0.2em] uppercase transition-all duration-200 ${
-                reviewOpen
-                  ? "bg-white text-[#111] border border-[#111]"
-                  : "bg-[#111] text-white hover:bg-neutral-800"
-              }`}
+              className={`px-8 py-3 text-[11px] font-black tracking-[0.2em] uppercase transition-all duration-200 ${reviewOpen
+                ? "bg-white text-[#111] border border-[#111]"
+                : "bg-[#111] text-white hover:bg-neutral-800"
+                }`}
             >
               {reviewOpen ? "Cancel review" : "Write a review"}
             </button>
@@ -343,9 +518,19 @@ export default function EVoucherPage() {
 
               {/* Star rating picker */}
               <div className="flex flex-col items-center mb-6">
-                <p className="text-[12px] font-semibold text-neutral-500 mb-2">Rating</p>
+                <p
+                  style={{
+                    color: "#151515",
+                    fontFamily: "Arial",
+                    fontSize: "13px",
+                    letterSpacing: "0.26px",
+                    lineHeight: "18.2px",
+                    margin: "0px 0px 8px",
+                    textAlign: "center"
+                  }}
+                >Rating</p>
                 <div className="flex items-center gap-1">
-                  {[1,2,3,4,5].map((s) => (
+                  {[1, 2, 3, 4, 5].map((s) => (
                     <button
                       key={s}
                       onMouseEnter={() => setReviewHover(s)}
@@ -354,11 +539,10 @@ export default function EVoucherPage() {
                       className="p-0.5"
                     >
                       <Star
-                        className={`h-8 w-8 transition-colors ${
-                          s <= (reviewHover || reviewRating)
-                            ? "fill-[#111] text-[#111]"
-                            : "text-neutral-300"
-                        }`}
+                        className={`h-8 w-8 transition-colors ${s <= (reviewHover || reviewRating)
+                          ? "fill-[#111] text-[#111]"
+                          : "text-neutral-300"
+                          }`}
                       />
                     </button>
                   ))}
@@ -367,7 +551,17 @@ export default function EVoucherPage() {
 
               {/* Review Title */}
               <div className="mb-4">
-                <label className="block text-center text-[11px] font-semibold text-neutral-500 mb-2">
+                <label
+                  style={{
+                    color: "#151515",
+                    display: "block",
+                    fontFamily: "Arial",
+                    fontSize: "13px",
+                    letterSpacing: "0.26px",
+                    lineHeight: "18.2px",
+                    margin: "0px 0px 8px",
+                    textAlign: "center"
+                  }}>
                   Review Title (100)
                 </label>
                 <input
@@ -381,7 +575,17 @@ export default function EVoucherPage() {
 
               {/* Review content */}
               <div className="mb-4">
-                <label className="block text-center text-[11px] font-semibold text-neutral-500 mb-2">
+                <label
+                  style={{
+                    color: "#151515",
+                    display: "block",
+                    fontFamily: "Arial",
+                    fontSize: "13px",
+                    letterSpacing: "0.26px",
+                    lineHeight: "18.2px",
+                    margin: "0px 0px 8px",
+                    textAlign: "center"
+                  }}>
                   Review content
                 </label>
                 <textarea
@@ -394,7 +598,17 @@ export default function EVoucherPage() {
 
               {/* Picture/Video upload */}
               <div className="mb-4">
-                <label className="block text-center text-[11px] font-semibold text-neutral-500 mb-2">
+                <label
+                  style={{
+                    color: "#151515",
+                    display: "block",
+                    fontFamily: "Arial",
+                    fontSize: "13px",
+                    letterSpacing: "0.26px",
+                    lineHeight: "18.2px",
+                    margin: "0px 0px 8px",
+                    textAlign: "center"
+                  }}>
                   Picture/Video (optional)
                 </label>
                 <div
@@ -419,7 +633,17 @@ export default function EVoucherPage() {
 
               {/* Display name */}
               <div className="mb-4">
-                <label className="block text-center text-[11px] font-semibold text-neutral-500 mb-2">
+                <label
+                  style={{
+                    color: "#151515",
+                    display: "block",
+                    fontFamily: "Arial",
+                    fontSize: "13px",
+                    letterSpacing: "0.26px",
+                    lineHeight: "18.2px",
+                    margin: "0px 0px 8px",
+                    textAlign: "center"
+                  }}>
                   Display name (displayed publicly like John Smith ∨)
                 </label>
                 <input
@@ -432,7 +656,17 @@ export default function EVoucherPage() {
 
               {/* Email */}
               <div className="mb-8">
-                <label className="block text-center text-[11px] font-semibold text-neutral-500 mb-2">
+                <label
+                  style={{
+                    color: "#151515",
+                    display: "block",
+                    fontFamily: "Arial",
+                    fontSize: "13px",
+                    letterSpacing: "0.26px",
+                    lineHeight: "18.2px",
+                    margin: "0px 0px 8px",
+                    textAlign: "center"
+                  }}>
                   Email address
                 </label>
                 <input
@@ -444,15 +678,49 @@ export default function EVoucherPage() {
               </div>
 
               {/* Action buttons */}
-              <div className="flex gap-3">
+              <div className="flex items-center justify-center gap-4 w-full mt-6">
                 <button
                   onClick={() => setReviewOpen(false)}
-                  className="flex-1 py-3 text-[11px] font-black tracking-[0.2em] uppercase border border-[#111] text-[#111] hover:bg-neutral-100 transition-colors"
+                  style={{
+                    backgroundColor: "#fff",
+                    borderColor: "#000",
+                    borderStyle: "solid",
+                    borderWidth: "2px",
+                    display: "inline-block",
+                    fontFamily: "Arial, sans-serif",
+                    fontWeight: 700,
+                    lineHeight: "16px",
+                    padding: "10px 20px",
+                    textAlign: "center",
+                    width: "151px",
+                    height: "40px",
+                    color: "#000",
+                    fontSize: "12px"
+                  }}
                 >
                   Cancel review
                 </button>
                 <button
-                  className="flex-1 py-3 text-[11px] font-black tracking-[0.2em] uppercase bg-[#111] text-white hover:bg-neutral-800 transition-colors"
+                  style={{
+                    alignItems: "center",
+                    backgroundColor: "#000",
+                    borderColor: "#000",
+                    borderStyle: "solid",
+                    borderWidth: "2px",
+                    color: "#fff",
+                    display: "inline-flex",
+                    fontFamily: "Arial, sans-serif",
+                    fontWeight: 700,
+                    justifyContent: "center",
+                    letterSpacing: "0.32px",
+                    lineHeight: "16px",
+                    padding: "10px 20px",
+                    textAlign: "center",
+                    textTransform: "uppercase",
+                    width: "177px",
+                    height: "48px",
+                    fontSize: "12px"
+                  }}
                 >
                   Submit review
                 </button>
@@ -468,7 +736,17 @@ export default function EVoucherPage() {
           <h2 className="text-center text-[28px] font-semibold tracking-[0.05em] text-[#111] mb-2">
             F.A.Q.
           </h2>
-          <p className="text-center text-[13px] text-neutral-500 font-medium mb-12">
+          <p
+            style={{
+              color: "#151515",
+              fontFamily: "Arial, sans-serif",
+              fontSize: "17px",
+              fontWeight: 300,
+              lineHeight: "27.2px",
+              textAlign: "center"
+            }}
+            className="mb-12"
+          >
             Heres what our customers usually ask us while shopping
           </p>
 
@@ -477,20 +755,41 @@ export default function EVoucherPage() {
               <div key={idx}>
                 <button
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  className="w-full flex items-center justify-between py-5 text-left group"
+                  className="w-full flex items-center justify-between text-left group"
                 >
-                  <span className="text-[11px] font-black tracking-[0.18em] uppercase text-[#111] group-hover:opacity-70 transition-opacity">
+                  <span
+                    style={{
+                      color: "#151515",
+                      display: "inline-block",
+                      fontFamily: "Arial, sans-serif",
+                      fontWeight: 600,
+                      letterSpacing: "0.32px",
+                      lineHeight: "16px",
+                      padding: "18px 40px 18px 0px",
+                      textTransform: "uppercase"
+                    }}
+                    className="group-hover:opacity-70 transition-opacity"
+                  >
                     {item.q}
                   </span>
                   <Plus
-                    className={`h-4 w-4 flex-shrink-0 ml-4 text-[#111] transition-transform duration-200 ${
-                      openFaq === idx ? "rotate-45" : ""
-                    }`}
+                    className={`h-4 w-4 flex-shrink-0 ml-4 text-[#111] transition-transform duration-200 ${openFaq === idx ? "rotate-45" : ""
+                      }`}
                   />
                 </button>
                 {openFaq === idx && (
                   <div className="pb-5 pr-8">
-                    <p className="text-[13px] text-neutral-600 leading-relaxed">{item.a}</p>
+                    <p
+                      style={{
+                        color: "#151515",
+                        fontFamily: "Arial, sans-serif",
+                        fontSize: "15px",
+                        fontWeight: 300,
+                        lineHeight: "24px"
+                      }}
+                    >
+                      {item.a}
+                    </p>
                   </div>
                 )}
               </div>
