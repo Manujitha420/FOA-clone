@@ -13,21 +13,21 @@ import { SearchDrawer } from "@/components/layout/SearchDrawer";
 const mensColumns = [
   {
     title: "CLOTHING",
-    href: "/#men",
+    href: "/collections/men",
     items: [
-      { name: "MENS ALL", href: "/#men" },
-      { name: "TEES", href: "/#men" },
-      { name: "PRINTED TEES", href: "/#men" },
-      { name: "TANKS", href: "/#men" },
-      { name: "JACKETS", href: "/#men" },
-      { name: "SHIRTS", href: "/#men" },
-      { name: "HOODIES", href: "/#men" },
-      { name: "PANTS", href: "/#men" },
-      { name: "SHORTS", href: "/#men" },
-      { name: "JOGGERS", href: "/#men" },
-      { name: "COMPRESSION", href: "/#men" },
-      { name: "BOXERS", href: "/#men" },
-      { name: "DENIM", href: "/#men" },
+      { name: "MENS ALL", href: "/collections/men" },
+      { name: "TEES", href: "/collections/men" },
+      { name: "PRINTED TEES", href: "/collections/men" },
+      { name: "TANKS", href: "/collections/men" },
+      { name: "JACKETS", href: "/collections/men" },
+      { name: "SHIRTS", href: "/collections/men" },
+      { name: "HOODIES", href: "/collections/men" },
+      { name: "PANTS", href: "/collections/men" },
+      { name: "SHORTS", href: "/collections/men" },
+      { name: "JOGGERS", href: "/collections/men" },
+      { name: "COMPRESSION", href: "/collections/men" },
+      { name: "BOXERS", href: "/collections/men" },
+      { name: "DENIM", href: "/collections/men" },
     ]
   },
   {
@@ -51,10 +51,10 @@ const mensColumns = [
   },
   {
     title: "TRENDING",
-    href: "/#men",
+    href: "/collections/men",
     items: [
-      { name: "TEES", href: "/#men" },
-      { name: "HOODIES", href: "/#men" },
+      { name: "TEES", href: "/collections/men" },
+      { name: "HOODIES", href: "/collections/men" },
       { name: "SHOES", href: "/#footwear" },
     ]
   },
@@ -65,7 +65,7 @@ const mensColumns = [
   },
   {
     title: "ALL MENS",
-    href: "/#men",
+    href: "/collections/men",
     items: []
   }
 ];
@@ -195,7 +195,7 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { name: "MENS", href: "/#men", hasDropdown: true },
+    { name: "MENS", href: "/collections/men", hasDropdown: true },
     { name: "WOMENS", href: "/#women", hasDropdown: true },
     { name: "ACCESSORIES", href: "/#accessories", hasDropdown: true },
     { name: "FOOTWEAR", href: "/#footwear", hasDropdown: true },
