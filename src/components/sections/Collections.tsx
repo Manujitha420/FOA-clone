@@ -17,6 +17,7 @@ interface NewCollectionProduct {
   priceLKR: number;
   colors: ColorSwatch[];
   image: string;
+  hoverImage?: string;
   installments: {
     mintpay: string;
     koko: string;
@@ -32,7 +33,8 @@ const NEW_COLLECTION_PRODUCTS: NewCollectionProduct[] = [
       { name: "Navy", hex: "#2b3c5a" },
       { name: "Black", hex: "#151515" }
     ],
-    image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/00012701B.jpg?v=1778250510&width=1204",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/00012701A.jpg?v=1778250510&width=1204",
     installments: {
       mintpay: "3 X Rs 1,500.00 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 1,500.00 with"
@@ -48,7 +50,8 @@ const NEW_COLLECTION_PRODUCTS: NewCollectionProduct[] = [
       { name: "Navy", hex: "#2b3c5a" },
       { name: "Charcoal", hex: "#4b5563" }
     ],
-    image: "https://images.unsplash.com/photo-1517462964-21fdcec3f25b?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/00012601C.jpg?v=1778249513&width=960",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/00012601B.jpg?v=1778249512&width=960",
     installments: {
       mintpay: "3 X Rs 1,600.00 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 1,600.00 with"
@@ -64,49 +67,52 @@ const NEW_COLLECTION_PRODUCTS: NewCollectionProduct[] = [
       { name: "Maroon", hex: "#7f1d1d" },
       { name: "Grey", hex: "#4b5563" }
     ],
-    image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/00012501A.jpg?v=1778247075&width=960",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/00012501C.jpg?v=1778247075&width=960",
     installments: {
       mintpay: "3 X Rs 1,600.00 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 1,600.00 with"
     }
   },
   {
-    id: "aero-tank-top",
-    title: "AERO TANK TOP",
+    id: "dead-rules-tee",
+    title: "DEAD RULES TEE",
     priceLKR: 2800,
     colors: [
       { name: "Charcoal", hex: "#374151" },
       { name: "Red/Stripe", hex: "#b91c1c" }
     ],
-    image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/60014301A.jpg?v=1774438598&width=960",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/60014303A.jpg?v=1774439477&width=960",
     installments: {
       mintpay: "3 X Rs 933.33 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 933.33 with"
     }
   },
   {
-    id: "core-mens-tee",
-    title: "CORE MENS TEE",
+    id: "foa-hydrojug-1l",
+    title: "F.O.A HYDROJUG 1L",
     priceLKR: 3200,
     colors: [
       { name: "Black", hex: "#151515" },
       { name: "White", hex: "#ffffff" }
     ],
-    image: "https://images.unsplash.com/photo-1554568218-0f1715e72254?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/60011801A.jpg?v=1754042822&width=960",
     installments: {
       mintpay: "3 X Rs 1,066.67 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 1,066.67 with"
     }
   },
   {
-    id: "urban-cargo-shorts",
-    title: "URBAN CARGO SHORTS",
+    id: "foa-boxer-briefs",
+    title: "F.O.A BOXER BRIEFS",
     priceLKR: 4500,
     colors: [
       { name: "Khaki", hex: "#c2b280" },
       { name: "Olive", hex: "#3f493a" }
     ],
-    image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/60000701A_caa37106-5e9b-42c3-9b1a-5119544105b3.jpg?v=1771933146&width=960",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/60000702A_a1568ba3-858d-47bf-ba21-3c80cf145ca3.jpg?v=1772016630&width=960",
     installments: {
       mintpay: "3 X Rs 1,500.00 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 1,500.00 with"
@@ -168,12 +174,12 @@ export const Collections: React.FC = () => {
   };
 
   return (
-    <section 
-      className="py-24 px-6 mx-auto bg-background relative"
+    <section
+      className="pt-24 pb-1 px-6 mx-auto bg-background relative"
       style={{
         width: "100%",
-        maxWidth: "1800px",
-        minHeight: "1390px"
+        maxWidth: "1434px",
+        minHeight: "1100px"
       }}
     >
       {/* Section Header */}
@@ -260,7 +266,7 @@ export const Collections: React.FC = () => {
               return (
                 <div
                   key={product.id}
-                  className="flex-shrink-0 relative group p-3 border border-neutral-100 shadow-xs"
+                  className="flex-shrink-0 relative group p-3"
                   style={{
                     width: visibleItems === 4 ? "403px" : `calc((100% - ${(visibleItems - 1) * 24}px) / ${visibleItems})`,
                     height: visibleItems === 4 ? "835px" : "auto",
@@ -279,9 +285,19 @@ export const Collections: React.FC = () => {
                       src={product.image}
                       alt={product.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className={`object-cover transition-all duration-150 ${product.hoverImage ? "opacity-100 group-hover:opacity-0" : "group-hover:scale-105"
+                        }`}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
+                    {product.hoverImage && (
+                      <Image
+                        src={product.hoverImage}
+                        alt={product.title}
+                        fill
+                        className="object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      />
+                    )}
 
                     {/* Wishlist Button (Heart) */}
                     <div className="absolute top-5 right-5 z-20 group/heart">
@@ -291,9 +307,8 @@ export const Collections: React.FC = () => {
                         aria-label="Wishlist"
                       >
                         <Heart
-                          className={`h-7 w-7 stroke-[1.2] transition-colors ${
-                            isWishlisted ? "fill-red-500 text-red-500" : "text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
-                          }`}
+                          className={`h-7 w-7 stroke-[1.2] transition-colors ${isWishlisted ? "fill-red-500 text-red-500" : "text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
+                            }`}
                         />
                       </button>
 
@@ -361,16 +376,16 @@ export const Collections: React.FC = () => {
                     >
                       <span>{product.installments.mintpay}</span>
                       <a href="https://mintpay.lk" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
-                        <img 
-                          src="https://s3.amazonaws.com/bizenglish/wp-content/uploads/2022/10/28174525/Mintpay-Logo.jpg" 
-                          alt="Mintpay" 
+                        <img
+                          src="https://s3.amazonaws.com/bizenglish/wp-content/uploads/2022/10/28174525/Mintpay-Logo.jpg"
+                          alt="Mintpay"
                           className="h-3.5 w-auto object-contain mix-blend-multiply"
                         />
                       </a>
                       <a href="https://mintpay.lk/education" target="_blank" rel="noopener noreferrer" className="inline-flex items-center ml-0.5">
-                        <img 
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDwo2P5BH9VbhE7hHG6K8IrDRjlqQx9Zl4GLwhJX8VVw&s=10" 
-                          alt="Info" 
+                        <img
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDwo2P5BH9VbhE7hHG6K8IrDRjlqQx9Zl4GLwhJX8VVw&s=10"
+                          alt="Info"
                           className="h-3 w-3 object-contain"
                         />
                       </a>
@@ -388,16 +403,16 @@ export const Collections: React.FC = () => {
                     >
                       <span>{product.installments.koko}</span>
                       <a href="https://paykoko.com/customer-education?Amount=100" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
-                        <img 
-                          src="https://qa-merchant.paykoko.com/assets/images/logo.png" 
-                          alt="Koko" 
+                        <img
+                          src="https://qa-merchant.paykoko.com/assets/images/logo.png"
+                          alt="Koko"
                           className="h-3.5 w-auto object-contain mix-blend-multiply"
                         />
                       </a>
                       <a href="https://paykoko.com/customer-education?Amount=1500.0" target="_blank" rel="noopener noreferrer" className="inline-flex items-center ml-0.5">
-                        <img 
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDwo2P5BH9VbhE7hHG6K8IrDRjlqQx9Zl4GLwhJX8VVw&s=10" 
-                          alt="Info" 
+                        <img
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDwo2P5BH9VbhE7hHG6K8IrDRjlqQx9Zl4GLwhJX8VVw&s=10"
+                          alt="Info"
                           className="h-3 w-3 object-contain"
                         />
                       </a>
@@ -412,9 +427,8 @@ export const Collections: React.FC = () => {
                           <button
                             key={color.name}
                             onClick={() => selectColor(product.id, color.hex)}
-                            className={`w-7 h-7 flex items-center justify-center border transition-all relative ${
-                              isActive ? "border-2 border-black" : "border border-neutral-200 hover:border-neutral-400"
-                            }`}
+                            className={`w-7 h-7 flex items-center justify-center border transition-all relative ${isActive ? "border-2 border-black" : "border border-neutral-200 hover:border-neutral-400"
+                              }`}
                             aria-label={`Select ${color.name}`}
                             style={{ padding: "3px" }}
                           >

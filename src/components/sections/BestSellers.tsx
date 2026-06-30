@@ -16,6 +16,7 @@ interface BestSellerProduct {
   priceLKR: number;
   colors: ColorSwatch[];
   image: string;
+  hoverImage?: string;
   category: "TEES" | "DENIM" | "BAGS" | "ACCESSORIES";
   installments: {
     mintpay: string;
@@ -25,103 +26,110 @@ interface BestSellerProduct {
 
 const BEST_SELLER_PRODUCTS: BestSellerProduct[] = [
   {
-    id: "foa-oversized-tee-black",
-    title: 'FOA "Freedom" Oversized Graphic Tee',
+    id: "flux-oversized-tee",
+    title: 'FLUX OVERSIZED TEE',
     priceLKR: 4200,
     category: "TEES",
     colors: [
       { name: "Black", hex: "#151515" },
       { name: "White", hex: "#ffffff" }
     ],
-    image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/00012501A.jpg?v=1778247075&width=1440",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/00012501B.jpg?v=1778247075&width=1440",
     installments: {
       mintpay: "3 X Rs 1,400.00 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 1,400.00 with"
     }
   },
   {
-    id: "flux-oversize-tee-best",
-    title: "FLUX OVERSIZE TEE",
+    id: "linear_tee",
+    title: "LINEAR  TEE",
     priceLKR: 4800,
     category: "TEES",
     colors: [
       { name: "Navy", hex: "#2b3c5a" },
       { name: "Beige", hex: "#dcd6cd" }
     ],
-    image: "https://images.unsplash.com/photo-1554568218-0f1715e72254?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/00012301A.jpg?v=1770036513&width=960",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/00012302A.jpg?v=1770037194&width=960",
     installments: {
       mintpay: "3 X Rs 1,600.00 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 1,600.00 with"
     }
   },
   {
-    id: "foa-cargo-joggers-carbon",
-    title: "FOA Carbon Utility Cargo Pants",
+    id: "loose-flared-jeans",
+    title: "LOOSE FLARED JEANS",
     priceLKR: 7800,
     category: "DENIM",
     colors: [
       { name: "Carbon", hex: "#374151" },
       { name: "Black", hex: "#151515" }
     ],
-    image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/00011801A.jpg?v=1761150100&width=960",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/00011805A.jpg?v=1761214526&width=960",
     installments: {
       mintpay: "3 X Rs 2,600.00 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 2,600.00 with"
     }
   },
   {
-    id: "neo-utility-short-best",
-    title: "NEO UTILITY SHORT",
+    id: "carpenter-jeans",
+    title: "CARPENTER JEANS",
     priceLKR: 4500,
     category: "DENIM",
     colors: [
       { name: "Navy", hex: "#2b3c5a" },
       { name: "Black", hex: "#151515" }
     ],
-    image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/00011501A.jpg?v=1761146073&width=960",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/00011503A.jpg?v=1761214447&width=960",
     installments: {
       mintpay: "3 X Rs 1,500.00 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 1,500.00 with"
     }
   },
   {
-    id: "foa-crossbody-bag-black",
-    title: "FOA Technical Crossbody Bag",
+    id: "essential-tote-bag",
+    title: "ESSENTIAL TOTE BAG",
     priceLKR: 4500,
     category: "BAGS",
     colors: [
       { name: "Black", hex: "#151515" }
     ],
-    image: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/60013801A.jpg?v=1769681924&width=960",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/60013801C.jpg?v=1769681924&width=960",
     installments: {
       mintpay: "3 X Rs 1,500.00 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 1,500.00 with"
     }
   },
   {
-    id: "foa-signature-cap",
-    title: "FOA Distress Vintage Cap",
+    id: "foa-hydrojug",
+    title: "F.O.A HYDROJUG 1L",
     priceLKR: 2800,
     category: "ACCESSORIES",
     colors: [
       { name: "Charcoal", hex: "#4b5563" },
       { name: "Red/Stripe", hex: "#b91c1c" }
     ],
-    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/60011801A.jpg?v=1754042822&width=960",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/60011801A.jpg?v=1754042822&width=960",
     installments: {
       mintpay: "3 X Rs 933.33 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 933.33 with"
     }
   },
   {
-    id: "foa-sliders-stealth",
-    title: "FOA Stealth Comfort Sliders",
+    id: "crossbody-bag",
+    title: "CROSSBODY BAG 2.0",
     priceLKR: 3200,
     category: "ACCESSORIES",
     colors: [
       { name: "Black", hex: "#151515" }
     ],
-    image: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=600&auto=format&fit=crop",
+    image: "https://foaclothing.com/cdn/shop/files/60009300A.jpg?v=1754042961&width=960",
+    hoverImage: "https://foaclothing.com/cdn/shop/files/60009302A.jpg?v=1754042962&width=960",
     installments: {
       mintpay: "3 X Rs 1,066.67 or 4.5% Cashback with",
       koko: "or pay in 3 x Rs 1,066.67 with"
@@ -195,14 +203,14 @@ export const BestSellers: React.FC = () => {
           >
             Shop some of our hottest products
           </p>
-          <div className="flex items-center space-x-4 text-sm font-medium tracking-wider select-none">
+          <div className="flex items-center space-x-2 text-sm font-medium tracking-wider select-none">
             {(["TEES", "DENIM", "BAGS", "ACCESSORIES"] as const).map((tab, idx, arr) => {
               const isActive = activeTab === tab;
               return (
                 <React.Fragment key={tab}>
                   <button
                     onClick={() => setActiveTab(tab)}
-                    className={`pb-1 transition-all duration-200 uppercase font-normal tracking-widest text-[20px] ${isActive ? "text-[#151515]" : "text-[#a3a3a3] hover:text-[#151515]"
+                    className={`pb-1 transition-all duration-200 uppercase font-normal tracking-normal text-[20px] ${isActive ? "text-[#151515]" : "text-[#a3a3a3] hover:text-[#151515]"
                       }`}
                     style={{
                       borderBottom: isActive ? "2px solid #151515" : "2px solid transparent",
@@ -229,7 +237,7 @@ export const BestSellers: React.FC = () => {
           return (
             <div
               key={product.id}
-              className="flex-shrink-0 relative group p-3 border border-neutral-100 shadow-xs"
+              className="flex-shrink-0 relative group p-3"
               style={{
                 width: "403px",
                 height: "835px",
@@ -252,15 +260,25 @@ export const BestSellers: React.FC = () => {
                   src={product.image}
                   alt={product.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className={`object-cover transition-all duration-150 ${product.hoverImage ? "opacity-100 group-hover:opacity-0" : "group-hover:scale-105"
+                    }`}
                   sizes="403px"
                 />
+                {product.hoverImage && (
+                  <Image
+                    src={product.hoverImage}
+                    alt={product.title}
+                    fill
+                    className="object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                    sizes="403px"
+                  />
+                )}
 
                 {/* Wishlist Button */}
                 <div className="absolute top-5 right-5 z-20 group/heart">
                   <button
                     onClick={() => toggleWishlist(product.id)}
-                    className="transition-transform duration-200 hover:scale-110 active:scale-95"
+                    className="transition-transform duration-150 hover:scale-110 active:scale-95"
                     aria-label="Wishlist"
                   >
                     <Heart

@@ -425,7 +425,7 @@ export const Navbar: React.FC = () => {
                 textAlign: "center"
               }}
             >
-              <LogoIcon className="h-[22px] w-auto" invert={!isHeaderActive} />
+              <LogoIcon className="w-[115px] h-[30px]" invert={!isHeaderActive} />
             </Link>
           </div>
 

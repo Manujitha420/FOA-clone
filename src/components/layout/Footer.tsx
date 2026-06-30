@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
           {/* Left Column: Logo & Socials (stretched with flex to align socials to the bottom) */}
           <div className="lg:col-span-5 flex flex-col justify-between space-y-12">
             <div>
-              <LogoIcon className="h-10 w-auto text-white" />
+              <LogoIcon className="w-[150px] h-[50px] text-white" />
             </div>
 
             <div 
