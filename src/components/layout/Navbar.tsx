@@ -230,7 +230,7 @@ export const Navbar: React.FC = () => {
           fontSize: "17px",
           fontWeight: 300,
           lineHeight: "17px",
-          padding: "14px 0px"
+          padding: "16px 0px"
         }}
       >
         <style dangerouslySetInnerHTML={{
