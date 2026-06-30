@@ -74,7 +74,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
       return [...prev, { ...newItem, quantity: 1 }];
     });
-    setCartOpen(true); // Auto open cart drawer on add
+    // setCartOpen(true); // Auto open cart drawer on add (disabled as per request)
   };
 
   const removeFromCart = (id: string, selectedSize: string) => {
