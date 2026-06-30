@@ -47,7 +47,7 @@ export default function AccountPage({ params }: AccountPageProps) {
               transition={{ duration: 0.3 }}
               className="space-y-8"
             >
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {/* Title */}
                 <h1
                   style={{
@@ -57,14 +57,15 @@ export default function AccountPage({ params }: AccountPageProps) {
                     lineHeight: "36px",
                     margin: "0px 0px 10px",
                     textAlign: "center",
-                    textTransform: "uppercase"
+                    textTransform: "uppercase",
+                    letterSpacing: "0em"
                   }}
-                  className="font-normal tracking-[0.15em]"
+                  className="font-normal "
                 >
                   Log In
                 </h1>
                 {/* Description */}
-                <p className="text-[12px] text-neutral-500 font-sans tracking-wide">
+                <p className="text-[12px] text-[#1515151] font-sans tracking-wide">
                   If you have an account with us, please log in.
                 </p>
               </div>
@@ -166,9 +167,10 @@ export default function AccountPage({ params }: AccountPageProps) {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-4 bg-[#111111] text-white text-[11px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-neutral-800 transition-colors duration-200 focus:outline-none"
+                    className="relative w-full py-4 bg-[#111111] text-white text-[14px] font-medium uppercase tracking-[0em] rounded-full overflow-hidden group focus:outline-none border border-[#111111]"
                   >
-                    Sign In
+                    <span className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-200 ease-out" />
+                    <span className="relative z-10 transition-colors duration-200 group-hover:text-[#111111]">Sign In</span>
                   </button>
                 </div>
               </form>
@@ -215,7 +217,7 @@ export default function AccountPage({ params }: AccountPageProps) {
                     textAlign: "center",
                     textTransform: "uppercase"
                   }}
-                  className="font-normal tracking-[0.15em]"
+                  className="font-normal tracking-[0em]"
                 >
                   Create An Account
                 </h1>
@@ -413,9 +415,10 @@ export default function AccountPage({ params }: AccountPageProps) {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-4 bg-[#111111] text-white text-[11px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-neutral-800 transition-colors duration-200 focus:outline-none"
+                    className="relative w-full py-4 bg-[#111111] text-white text-[14px] font-medium uppercase tracking-[0em] rounded-full overflow-hidden group focus:outline-none border border-[#111111]"
                   >
-                    Create An Account
+                    <span className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-200 ease-out" />
+                    <span className="relative z-10 transition-colors duration-200 group-hover:text-[#111111]">Create An Account</span>
                   </button>
                 </div>
               </form>

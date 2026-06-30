@@ -53,21 +53,34 @@ export default function SearchPage() {
 
         {/* Heading */}
         <div className="text-center space-y-8 mb-16">
-          <h1 className="text-3xl md:text-5xl font-black uppercase tracking-wider text-[#111111]">
+          <h1
+            style={{
+              color: "#151515",
+              fontFamily: "Prompt, sans-serif",
+              fontSize: "52px",
+              fontWeight: 600,
+              lineHeight: "60px",
+              textAlign: "center",
+              textTransform: "uppercase",
+              width: "530px",
+              height: "60px",
+              margin: "0 auto"
+            }}
+          >
             Search Results
           </h1>
 
           {/* Search Input */}
-          <div className="max-w-2xl mx-auto relative">
+          <div className="max-w-2xl mx-auto relative mt-5">
             <input
               type="text"
               placeholder="Search for anything"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full pl-6 pr-12 py-3.5 border border-neutral-200 text-sm focus:outline-none focus:border-neutral-500 transition-colors placeholder:text-neutral-400 font-sans"
+              className="w-full pl-6 pr-12 py-3.5 border border-neutral-100 text-sm focus:outline-none focus:border-neutral-500 transition-colors placeholder:text-neutral-400 font-sans"
               autoFocus
             />
-            <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-400" />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-3 w-3 text-neutral-400" />
           </div>
         </div>
 
@@ -98,9 +111,8 @@ export default function SearchPage() {
                           src={product.images[0]}
                           alt={product.title}
                           fill
-                          className={`object-cover transition-opacity duration-500 ${
-                            hoveredCard === product.id && product.images[1] ? "opacity-0" : "opacity-100"
-                          }`}
+                          className={`object-cover transition-opacity duration-500 ${hoveredCard === product.id && product.images[1] ? "opacity-0" : "opacity-100"
+                            }`}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                         />
 
@@ -110,9 +122,8 @@ export default function SearchPage() {
                             src={product.images[1]}
                             alt={`${product.title} Alternate`}
                             fill
-                            className={`object-cover absolute inset-0 transition-opacity duration-500 ${
-                              hoveredCard === product.id ? "opacity-100" : "opacity-0"
-                            }`}
+                            className={`object-cover absolute inset-0 transition-opacity duration-500 ${hoveredCard === product.id ? "opacity-100" : "opacity-0"
+                              }`}
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                           />
                         )}

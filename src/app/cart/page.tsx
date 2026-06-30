@@ -80,9 +80,6 @@ export default function CartPage() {
       <CartDrawer />
 
       <main className="flex-grow max-w-6xl mx-auto px-4 md:px-8 pt-44 pb-20 w-full animate-fade-in">
-        <h1 className="text-3xl font-black tracking-wide text-[#111111] mb-10">
-          Your cart
-        </h1>
 
         {cartItems.length === 0 ? (
           <div className="text-center py-16 space-y-4">
@@ -100,11 +97,28 @@ export default function CartPage() {
             </div>
           </div>
         ) : (
-          <div className="space-y-12">
+          <div
+            style={{
+              color: "#151515",
+              fontSize: "17px",
+              fontWeight: 300,
+              lineHeight: "27.2px",
+              width: "900px",
+              minHeight: "558px",
+              maxWidth: "100%",
+              margin: "0 auto"
+            }}
+            className="space-y-12"
+          >
+            {/* Heading */}
+            <h1 className="text-3xl font-medium tracking-wide text-[#111111] mb-10">
+              Your cart
+            </h1>
+
             {/* Cart Table */}
             <div className="w-full">
               {/* Table Headers */}
-              <div className="grid grid-cols-[2fr_1fr_1fr] md:grid-cols-[3fr_1.2fr_1fr] gap-4 pb-4 border-b border-neutral-200 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400">
+              <div className="grid grid-cols-[2fr_1fr_1fr] md:grid-cols-[3fr_1.2fr_1fr] gap-4 pb-4 border-b border-neutral-200 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
                 <div>Product</div>
                 <div className="text-center">Quantity</div>
                 <div className="text-right">Total</div>
@@ -128,14 +142,14 @@ export default function CartPage() {
                           sizes="72px"
                         />
                       </div>
-                      <div className="space-y-1">
-                        <h4 className="text-xs font-black uppercase tracking-wider text-[#111111] leading-tight">
+                      <div className="space-y-0">
+                        <h4 className="text-xs font-medium uppercase tracking-wider text-[#111111] leading-none mb-1">
                           {item.title}
                         </h4>
-                        <p className="text-[10px] uppercase font-semibold text-neutral-400">
+                        <p className="text-[10px] uppercase font-medium text-neutral-400 leading-normal">
                           Color: {item.id.replace("foa-", "").replace(/-/g, " ")} 01
                         </p>
-                        <p className="text-[10px] uppercase font-semibold text-neutral-400">
+                        <p className="text-[10px] uppercase font-medium text-neutral-400 leading-normal">
                           Size: {item.selectedSize}
                         </p>
                       </div>
@@ -170,7 +184,7 @@ export default function CartPage() {
                     </div>
 
                     {/* Line Total */}
-                    <div className="text-right text-xs font-black text-neutral-800">
+                    <div className="text-right text-xs font-medium text-neutral-800 text-[15px]">
                       {formattedPrice(
                         (currency === "LKR" ? item.priceLKR : item.priceUSD) * item.quantity
                       )}
@@ -186,7 +200,7 @@ export default function CartPage() {
               <div>
                 <Link
                   href="/"
-                  className="btn-underline-fill text-xs font-black uppercase tracking-[0.2em] text-[#111111] pb-1"
+                  className="btn-underline-fill text-xs font-medium uppercase tracking-[0.2em] text-[#111111] pb-1"
                 >
                   Continue shopping
                 </Link>
