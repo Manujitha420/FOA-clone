@@ -7,7 +7,7 @@ import { useCart } from "@/context/CartContext";
 import { Navbar } from "@/components/layout/Navbar";
 import { CartDrawer } from "@/components/layout/CartDrawer";
 import { Footer } from "@/components/layout/Footer";
-import { Plus, Minus, Trash2, X } from "lucide-react";
+import { Plus, Minus, Trash2, X, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function CartPage() {
@@ -38,30 +38,36 @@ export default function CartPage() {
       title: "NEO UTILITY SHORT",
       priceLKR: 4500,
       priceUSD: 15,
-      image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=600&auto=format&fit=crop",
+      image: "https://foaclothing.com/cdn/shop/files/00012701A.jpg?v=1778250510&width=960",
+      hoverImage: "https://foaclothing.com/cdn/shop/files/00012701B.jpg?v=1778250510&width=960"
     },
     {
       id: "foa-unchained-tee",
       title: "UNCHAINED TEE",
       priceLKR: 5200,
       priceUSD: 17.5,
-      image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=600&auto=format&fit=crop",
+      image: "https://foaclothing.com/cdn/shop/files/60014201A.jpg?v=1772541413&width=960",
+      hoverImage: "https://foaclothing.com/cdn/shop/files/60014202A.jpg?v=1772612995&width=960"
     },
     {
       id: "foa-flux-jogger",
       title: "FLUX JOGGER",
       priceLKR: 4800,
       priceUSD: 16,
-      image: "https://images.unsplash.com/photo-1517462964-21fdcec3f25b?q=80&w=600&auto=format&fit=crop",
+      image: "https://foaclothing.com/cdn/shop/files/00012601A.jpg?v=1778249513&width=960",
+      hoverImage: "https://foaclothing.com/cdn/shop/files/00012601B.jpg?v=1778249512&width=960"
     },
     {
       id: "foa-linear-tee",
-      title: "LINEAR TEE",
+      title: "F.O.A BOXER BRIEFS",
       priceLKR: 4500,
       priceUSD: 15,
-      image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=600&auto=format&fit=crop",
+      image: "https://foaclothing.com/cdn/shop/files/60000701A_caa37106-5e9b-42c3-9b1a-5119544105b3.jpg?v=1771933146&width=960",
+      hoverImage: "https://foaclothing.com/cdn/shop/files/60000702A_a1568ba3-858d-47bf-ba21-3c80cf145ca3.jpg?v=1772016630&width=960"
     },
   ];
+
+  const [selectedProduct, setSelectedProduct] = useState<typeof recommendations[0] | null>(null);
 
   const handleAddRecommendation = (item: typeof recommendations[0]) => {
     addToCart({
@@ -79,7 +85,7 @@ export default function CartPage() {
       <Navbar />
       <CartDrawer />
 
-      <main className="flex-grow max-w-6xl mx-auto px-4 md:px-8 pt-44 pb-20 w-full animate-fade-in">
+      <main className="flex-grow max-w-[1564px] mx-auto px-4 md:px-8 pt-44 pb-20 w-full animate-fade-in">
 
         {cartItems.length === 0 ? (
           <div className="text-center py-16 space-y-4">
@@ -291,35 +297,73 @@ export default function CartPage() {
         )}
 
         {/* You may also like recommendations block */}
-        <section className="mt-24 pt-16 border-t border-neutral-100">
+        <section
+          className="mt-24 pt-16 border-t border-neutral-100 mx-auto"
+          style={{ width: "1500px", minHeight: "896px", maxWidth: "100%" }}
+        >
           <div className="text-center mb-12">
             <h2 className="text-2xl font-black uppercase tracking-[0.2em] text-[#111111] mb-2">
               You may also like
             </h2>
-            <p className="text-xs text-neutral-400 uppercase tracking-widest font-semibold">
+            <p className="text-xs text-neutral-400 uppercase tracking-[0em] font-semibold">
               Describe your featured collection here
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
             {recommendations.map((item) => (
-              <div key={item.id} className="group flex flex-col space-y-4">
-                <div className="relative aspect-[3/4] w-full bg-neutral-50 overflow-hidden shadow-xs">
+              <div
+                key={item.id}
+                className="group flex flex-col w-full"
+                style={{ maxWidth: "356px", height: "682px" }}
+              >
+                {/* Image */}
+                <div
+                  className="relative w-full bg-neutral-50 overflow-hidden shadow-xs"
+                  style={{ height: "500px" }}
+                >
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="260px"
+                    className={`object-cover transition-all duration-150 ${item.hoverImage ? "opacity-100 group-hover:opacity-0" : "group-hover:scale-105"
+                      }`}
+                    sizes="356px"
                   />
+                  {item.hoverImage && (
+                    <Image
+                      src={item.hoverImage}
+                      alt={item.title}
+                      fill
+                      className="object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      sizes="356px"
+                    />
+                  )}
                   <button
-                    onClick={() => handleAddRecommendation(item)}
-                    className="absolute bottom-3 left-3 right-3 bg-white/95 text-black hover:bg-black hover:text-white transition-colors py-2 text-[9px] font-black uppercase tracking-wider shadow-md opacity-0 group-hover:opacity-100 duration-200 cursor-pointer"
+                    onClick={() => setSelectedProduct(item)}
+                    className="absolute bottom-3 left-1/2 -translate-x-1/2 transition-all duration-200 cursor-pointer opacity-0 group-hover:opacity-100 shadow-md"
+                    style={{
+                      width: "353px",
+                      maxWidth: "calc(100% - 16px)",
+                      height: "40px",
+                      alignItems: "center",
+                      backgroundColor: "#151515e6",
+                      color: "#fff",
+                      display: "flex",
+                      fontSize: "17px",
+                      fontWeight: 300,
+                      justifyContent: "center",
+                      lineHeight: "27.2px",
+                      padding: "5px",
+                      textAlign: "center",
+                    }}
                   >
-                    Quick Add
+                    QUICK VIEW
                   </button>
                 </div>
-                <div className="space-y-1.5">
+
+                {/* Details */}
+                <div className="flex flex-col pt-3 px-1 flex-1 space-y-1.5">
                   <h4 className="text-[11px] font-black tracking-wider uppercase text-[#111111]">
                     {item.title}
                   </h4>
@@ -328,11 +372,34 @@ export default function CartPage() {
                   </p>
 
                   {currency === "LKR" ? (
-                    <p className="text-[9px] text-neutral-500 font-semibold tracking-wide leading-relaxed">
-                      3 x Rs {(item.priceLKR / 3).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} or 4.5% Cashback with{" "}
-                      <span className="font-bold text-sky-600">mintpay</span> or pay in 3 x Rs {(item.priceLKR / 3).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} with{" "}
-                      <span className="font-bold text-indigo-600">Koko</span>
-                    </p>
+                    <>
+                      {/* MintPay row */}
+                      <div className="flex items-center flex-wrap gap-1 text-[9px] leading-tight text-neutral-500 font-bold tracking-wide">
+                        <span>
+                          3 x Rs {(item.priceLKR / 3).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} or 4.5% Cashback with
+                        </span>
+                        <a href="https://mintpay.lk" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
+                          <img
+                            src="/mintpay-logo.svg"
+                            alt="Mintpay"
+                            className="h-3.5 w-auto object-contain mix-blend-multiply"
+                          />
+                        </a>
+                      </div>
+                      {/* Koko row */}
+                      <div className="flex items-center flex-wrap gap-1 text-[9px] leading-tight text-neutral-500 font-bold tracking-wide">
+                        <span>
+                          or pay in 3 x Rs {(item.priceLKR / 3).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} with
+                        </span>
+                        <a href="https://paykoko.com/customer-education" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
+                          <img
+                            src="/koko-logo.svg"
+                            alt="Koko"
+                            className="h-3.5 w-auto object-contain mix-blend-multiply"
+                          />
+                        </a>
+                      </div>
+                    </>
                   ) : (
                     <p className="text-[9px] text-neutral-500 font-semibold tracking-wide">
                       Installment options available at checkout.
@@ -343,7 +410,116 @@ export default function CartPage() {
             ))}
           </div>
         </section>
+
       </main>
+
+      {/* Quick View Dialog Overlay */}
+      <AnimatePresence>
+        {selectedProduct && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProduct(null)}
+              className="fixed inset-0 bg-neutral-900/60 z-50 backdrop-blur-xs"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-3xl bg-white z-55 shadow-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 overflow-y-auto max-h-[85vh] text-left"
+            >
+              <button
+                onClick={() => setSelectedProduct(null)}
+                className="absolute top-4 right-4 text-neutral-800 hover:text-black p-1 z-10"
+                aria-label="Close details"
+              >
+                <X className="h-6 w-6" />
+              </button>
+
+              <div className="relative w-full md:w-1/2 aspect-[3/4] bg-neutral-50 overflow-hidden">
+                <Image
+                  src={selectedProduct.image}
+                  alt={selectedProduct.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 350px"
+                />
+              </div>
+
+              <div className="flex-1 flex flex-col justify-between py-2">
+                <div className="space-y-4">
+                  <span className="text-[10px] font-black tracking-widest text-[#151515] uppercase">
+                    Featured Collection Item
+                  </span>
+                  <h3
+                    className="text-lg md:text-xl font-black uppercase tracking-wider leading-snug"
+                    style={{ fontFamily: "Prompt, sans-serif", color: "#151515" }}
+                  >
+                    {selectedProduct.title}
+                  </h3>
+
+                  <div className="flex items-center space-x-3 text-lg font-black">
+                    <span style={{ fontFamily: "Prompt, sans-serif", color: "#151515" }}>
+                      {formattedPrice(currency === "LKR" ? selectedProduct.priceLKR : selectedProduct.priceUSD)}
+                    </span>
+                  </div>
+
+                  <p
+                    className="text-xs text-neutral-500 font-semibold uppercase tracking-wider leading-relaxed"
+                    style={{ fontFamily: "Prompt, sans-serif" }}
+                  >
+                    Experience extreme comfort with this release. Part of our featured collection featuring premium fabrics, double stitched details and comfort aesthetics.
+                  </p>
+
+                  <div className="space-y-2 pt-2">
+                    <span
+                      className="text-[10px] font-black uppercase tracking-widest text-neutral-400"
+                      style={{ fontFamily: "Prompt, sans-serif" }}
+                    >
+                      Sizes Available
+                    </span>
+                    <div className="flex gap-2">
+                      {["S", "M", "L", "XL"].map((size) => (
+                        <span
+                          key={size}
+                          className="border border-neutral-300 px-3 py-1.5 text-xs font-black tracking-widest bg-neutral-50"
+                          style={{ fontFamily: "Prompt, sans-serif" }}
+                        >
+                          {size}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-neutral-100 mt-6 space-y-3">
+                  <button
+                    className="w-full bg-[#151515] text-white hover:bg-neutral-800 transition-colors uppercase font-black text-xs py-3.5 text-center tracking-widest flex items-center justify-center gap-2"
+                    style={{ fontFamily: "Prompt, sans-serif" }}
+                    onClick={() => {
+                      addToCart({
+                        id: selectedProduct.id,
+                        title: selectedProduct.title,
+                        priceLKR: selectedProduct.priceLKR,
+                        priceUSD: selectedProduct.priceUSD,
+                        image: selectedProduct.image,
+                        selectedSize: "M",
+                      });
+                      setSelectedProduct(null);
+                    }}
+                  >
+                    <ShoppingBag className="h-4 w-4" /> Add To Shopping Cart
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>
