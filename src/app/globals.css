@@ -159,3 +159,48 @@ body {
 .btn-underline-fill:hover::after {
   transform: scaleX(1);
 }
+
+/* Custom Start Shopping button with fill-up effect */
+.btn-fill-up-shopping {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #151515;
+  color: #ffffff;
+  border: 0.555556px solid #151515;
+  border-radius: 50px;
+  font-family: 'Prompt', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.28px;
+  line-height: 22.4px;
+  padding: 7px 30px;
+  text-align: center;
+  text-transform: uppercase;
+  z-index: 1;
+  cursor: pointer;
+  transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-fill-up-shopping::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  z-index: -1;
+  transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-fill-up-shopping:hover {
+  color: #151515;
+  border-color: #151515;
+}
+
+.btn-fill-up-shopping:hover::before {
+  top: 0;
+}

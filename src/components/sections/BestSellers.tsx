@@ -350,7 +350,7 @@ export const BestSellers: React.FC = () => {
                   <span>{product.installments.mintpay}</span>
                   <a href="https://mintpay.lk" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
                     <img
-                      src="/mintpay-logo.svg"
+                      src="https://s3.amazonaws.com/bizenglish/wp-content/uploads/2022/10/28174525/Mintpay-Logo.jpg"
                       alt="Mintpay"
                       className="h-3.5 w-auto object-contain mix-blend-multiply"
                     />
@@ -377,7 +377,7 @@ export const BestSellers: React.FC = () => {
                   <span>{product.installments.koko}</span>
                   <a href="https://paykoko.com/customer-education?Amount=100" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
                     <img
-                      src="/koko-logo.svg"
+                      src="https://business360.lk/wp-content/uploads/2025/01/MAINLogo-HD_H.png"
                       alt="Koko"
                       className="h-3.5 w-auto object-contain mix-blend-multiply"
                     />
