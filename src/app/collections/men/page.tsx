@@ -185,7 +185,7 @@ const SORT_OPTIONS = [
 ];
 
 export default function MensPage() {
-  const { addToCart, currency } = useCart();
+  const { addToCart, currency, setQuickViewProduct } = useCart();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [inlineSortOpen, setInlineSortOpen] = useState(false);
 
@@ -491,9 +491,7 @@ export default function MensPage() {
                     {/* Quick View overlay button - instant hover representation */}
                     <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-10 flex items-end p-3">
                       <button
-                        onClick={() => {
-                          alert(`Quick View opened for: ${product.title}`);
-                        }}
+                        onClick={() => setQuickViewProduct(product)}
                         className="w-full bg-black/80 hover:bg-black text-white py-3.5 text-[10px] font-black uppercase tracking-widest cursor-pointer shadow-md select-none rounded-none text-center"
                       >
                         Quick View

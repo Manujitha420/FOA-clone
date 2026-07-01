@@ -1,6 +1,8 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
+import { QuickViewDrawer } from "@/components/layout/QuickViewDrawer";
 
 export interface CartItem {
   id: string;
@@ -22,6 +24,10 @@ interface CartContextType {
   clearCart: () => void;
   isCartOpen: boolean;
   setCartOpen: (open: boolean) => void;
+  isQuickViewOpen: boolean;
+  setQuickViewOpen: (open: boolean) => void;
+  quickViewProduct: any | null;
+  setQuickViewProduct: (product: any | null) => void;
   currency: "LKR" | "USD";
   setCurrency: (currency: "LKR" | "USD") => void;
   toggleCurrency: () => void;
@@ -33,7 +39,14 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setCartOpen] = useState(false);
+  const [isQuickViewOpen, setQuickViewOpen] = useState(false);
+  const [quickViewProduct, setQuickViewProductState] = useState<any | null>(null);
   const [currency, setCurrency] = useState<"LKR" | "USD">("LKR");
+
+  const setQuickViewProduct = (product: any | null) => {
+    setQuickViewProductState(product);
+    setQuickViewOpen(!!product);
+  };
 
   // Load cart from localStorage
   useEffect(() => {
@@ -118,6 +131,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         clearCart,
         isCartOpen,
         setCartOpen,
+        isQuickViewOpen,
+        setQuickViewOpen,
+        quickViewProduct,
+        setQuickViewProduct,
         currency,
         setCurrency,
         toggleCurrency,
@@ -125,6 +142,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }}
     >
       {children}
+      <QuickViewDrawer />
     </CartContext.Provider>
   );
 };

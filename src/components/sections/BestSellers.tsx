@@ -138,9 +138,8 @@ const BEST_SELLER_PRODUCTS: BestSellerProduct[] = [
 ];
 
 export const BestSellers: React.FC = () => {
-  const { addToCart, currency } = useCart();
+  const { addToCart, currency, setQuickViewProduct } = useCart();
   const [activeTab, setActiveTab] = useState<"TEES" | "DENIM" | "BAGS" | "ACCESSORIES">("TEES");
-  const [selectedProduct, setSelectedProduct] = useState<BestSellerProduct | null>(null);
   const [wishlist, setWishlist] = useState<string[]>([]);
   const [activeColors, setActiveColors] = useState<Record<string, string>>({});
 
@@ -295,7 +294,7 @@ export const BestSellers: React.FC = () => {
 
                 {/* Quick View slide up */}
                 <button
-                  onClick={() => setSelectedProduct(product)}
+                  onClick={() => setQuickViewProduct(product)}
                   className="absolute bottom-0 left-0 right-0 bg-[#151515] text-white text-center py-3 text-[11px] font-black uppercase tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10 hover:bg-neutral-800"
                 >
                   QUICK VIEW
@@ -446,113 +445,6 @@ export const BestSellers: React.FC = () => {
         })}
       </div>
 
-      {/* Quick View Dialog Overlay */}
-      <AnimatePresence>
-        {selectedProduct && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedProduct(null)}
-              className="fixed inset-0 bg-neutral-900/60 z-50 backdrop-blur-xs"
-            />
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-3xl bg-white z-55 shadow-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 overflow-y-auto max-h-[85vh] text-left"
-            >
-              <button
-                onClick={() => setSelectedProduct(null)}
-                className="absolute top-4 right-4 text-neutral-800 hover:text-black p-1 z-10"
-                aria-label="Close details"
-              >
-                <X className="h-6 w-6" />
-              </button>
-
-              <div className="relative w-full md:w-1/2 aspect-[3/4] bg-neutral-50 overflow-hidden">
-                <Image
-                  src={selectedProduct.image}
-                  alt={selectedProduct.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 350px"
-                />
-              </div>
-
-              <div className="flex-1 flex flex-col justify-between py-2">
-                <div className="space-y-4">
-                  <span className="text-[10px] font-black tracking-widest text-[#151515] uppercase">
-                    Best Seller Item
-                  </span>
-                  <h3
-                    className="text-lg md:text-xl font-black uppercase tracking-wider leading-snug"
-                    style={{ fontFamily: "Prompt, sans-serif", color: "#151515" }}
-                  >
-                    {selectedProduct.title}
-                  </h3>
-
-                  <div className="flex items-center space-x-3 text-lg font-black">
-                    <span style={{ fontFamily: "Prompt, sans-serif", color: "#151515" }}>
-                      {formattedPrice(selectedProduct.priceLKR)}
-                    </span>
-                  </div>
-
-                  <p
-                    className="text-xs text-neutral-500 font-semibold uppercase tracking-wider leading-relaxed"
-                    style={{ fontFamily: "Prompt, sans-serif" }}
-                  >
-                    Experience extreme comfort with this release. Part of our best sellers featuring premium fabrics, double stitched details and comfort aesthetics.
-                  </p>
-
-                  <div className="space-y-2 pt-2">
-                    <span
-                      className="text-[10px] font-black uppercase tracking-widest text-neutral-400"
-                      style={{ fontFamily: "Prompt, sans-serif" }}
-                    >
-                      Sizes Available
-                    </span>
-                    <div className="flex gap-2">
-                      {["S", "M", "L", "XL"].map((size) => (
-                        <span
-                          key={size}
-                          className="border border-neutral-300 px-3 py-1.5 text-xs font-black tracking-widest bg-neutral-50"
-                          style={{ fontFamily: "Prompt, sans-serif" }}
-                        >
-                          {size}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-6 border-t border-neutral-100 mt-6 space-y-3">
-                  <button
-                    className="w-full bg-[#151515] text-white hover:bg-neutral-800 transition-colors uppercase font-black text-xs py-3.5 text-center tracking-widest flex items-center justify-center gap-2"
-                    style={{ fontFamily: "Prompt, sans-serif" }}
-                    onClick={() => {
-                      addToCart({
-                        id: selectedProduct.id,
-                        title: selectedProduct.title,
-                        priceLKR: selectedProduct.priceLKR,
-                        priceUSD: selectedProduct.priceLKR / 300,
-                        image: selectedProduct.image,
-                        selectedSize: "M",
-                      });
-                      setSelectedProduct(null);
-                    }}
-                  >
-                    <ShoppingBag className="h-4 w-4" /> Add To Shopping Cart
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </section>
   );
 };

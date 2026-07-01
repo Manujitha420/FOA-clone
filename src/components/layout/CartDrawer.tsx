@@ -17,6 +17,7 @@ export const CartDrawer: React.FC = () => {
     removeFromCart,
     cartTotal,
     addToCart,
+    setQuickViewProduct,
   } = useCart();
 
   const [noteOpen, setNoteOpen] = useState(false);
@@ -217,7 +218,7 @@ export const CartDrawer: React.FC = () => {
                       )}
 
                       <button
-                        onClick={() => handleAddSuggestion(item)}
+                        onClick={() => setQuickViewProduct(item)}
                         className="mt-2 inline-block text-[12px] font-medium tracking-widest uppercase border-b border-[#111111] pb-0.5 hover:opacity-75 transition-opacity cursor-pointer"
                       >
                         Quick View

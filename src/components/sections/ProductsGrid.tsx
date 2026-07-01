@@ -10,8 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Eye, Plus, ShoppingBag, X } from "lucide-react";
 
 export const ProductsGrid: React.FC = () => {
-  const { addToCart, currency } = useCart();
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const { addToCart, currency, setQuickViewProduct } = useCart();
   const [activeTab, setActiveTab] = useState<Product["category"]>("men");
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
@@ -122,7 +121,7 @@ export const ProductsGrid: React.FC = () => {
                   variant="outline"
                   size="sm"
                   className="h-9 w-9 p-0 flex items-center justify-center bg-white/95 dark:bg-black/95 text-foreground hover:bg-foreground hover:text-background"
-                  onClick={() => setSelectedProduct(product)}
+                  onClick={() => setQuickViewProduct(product)}
                   aria-label="Quick View"
                 >
                   <Eye className="h-4 w-4" />
@@ -168,129 +167,6 @@ export const ProductsGrid: React.FC = () => {
       </div>
 
       {/* Quick View Dialog Overlay */}
-      <AnimatePresence>
-        {selectedProduct && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedProduct(null)}
-              className="fixed inset-0 bg-neutral-900/60 z-50 backdrop-blur-xs"
-            />
-
-            {/* Modal Dialog */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-3xl bg-white dark:bg-neutral-950 z-55 shadow-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 overflow-y-auto max-h-[85vh]"
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedProduct(null)}
-                className="absolute top-4 right-4 text-foreground/80 hover:text-foreground p-1"
-                aria-label="Close details"
-              >
-                <X className="h-6 w-6" />
-              </button>
-
-              {/* Left Column - Image */}
-              <div className="relative w-full md:w-1/2 aspect-[3/4] bg-neutral-50 dark:bg-neutral-900 overflow-hidden">
-                <Image
-                  src={selectedProduct.images[0]}
-                  alt={selectedProduct.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 350px"
-                />
-              </div>
-
-              {/* Right Column - Details */}
-              <div className="flex-1 flex flex-col justify-between py-2">
-                <div className="space-y-4">
-                  <span className="text-[10px] font-black tracking-widest text-accent uppercase">
-                    {selectedProduct.category}'s wear
-                  </span>
-                  <h3 className="text-lg md:text-xl font-black uppercase tracking-wider leading-snug">
-                    {selectedProduct.title}
-                  </h3>
-
-                  <div className="flex items-center space-x-3 text-lg font-black">
-                    <span>
-                      {formattedPrice(
-                        currency === "LKR" ? selectedProduct.priceLKR : selectedProduct.priceUSD
-                      )}
-                    </span>
-                    {selectedProduct.originalPriceLKR && selectedProduct.originalPriceUSD && (
-                      <span className="text-sm text-muted-foreground line-through font-medium">
-                        {formattedPrice(
-                          currency === "LKR"
-                            ? selectedProduct.originalPriceLKR
-                            : selectedProduct.originalPriceUSD
-                        )}
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider leading-relaxed">
-                    {selectedProduct.description}
-                  </p>
-
-                  <div className="space-y-2 pt-2">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
-                      Sizes Available
-                    </span>
-                    <div className="flex gap-2">
-                      {selectedProduct.sizes.map((size) => (
-                        <span
-                          key={size}
-                          className="border border-neutral-300 dark:border-neutral-700 px-3 py-1.5 text-xs font-black tracking-widest bg-neutral-50 dark:bg-neutral-900"
-                        >
-                          {size}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-6 border-t border-neutral-100 dark:border-neutral-900 mt-6 space-y-3">
-                  <Button
-                    variant="primary"
-                    className="w-full text-xs font-black flex items-center justify-center gap-2"
-                    onClick={() => {
-                      addToCart({
-                        id: selectedProduct.id,
-                        title: selectedProduct.title,
-                        priceLKR: selectedProduct.priceLKR,
-                        priceUSD: selectedProduct.priceUSD,
-                        originalPriceLKR: selectedProduct.originalPriceLKR,
-                        originalPriceUSD: selectedProduct.originalPriceUSD,
-                        image: selectedProduct.images[0],
-                        selectedSize: selectedProduct.sizes[0],
-                      });
-                      setSelectedProduct(null);
-                    }}
-                  >
-                    <ShoppingBag className="h-4 w-4" /> Add To Shopping Cart
-                  </Button>
-                  <Link href={`/products/${selectedProduct.id}`} className="block">
-                    <Button
-                      variant="outline"
-                      className="w-full text-xs font-black"
-                      onClick={() => setSelectedProduct(null)}
-                    >
-                      View Full Details
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
